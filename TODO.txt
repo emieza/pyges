@@ -1,0 +1,15 @@
+Parts del projecte:
+
+- pagines multillenguatge (model datastore)
+- gestió pestanyes, pagines, menus
+- editor WYSIWYG (CKeditor?)
+- disseny i custom CSS
+- categories (pagines,fotos,uploads)
+- galeries de fotos (blobstore)
+- integració editor/galeries
+- visor galeries (tiltviewer, carroussel, jQuery UI, etc.)
+- calendari events (datastore)
+- integració events google calendar
+- pagina de contacte (emails)
+- admin (auth, backend vs frontend)
+- 
