@@ -1,21 +1,26 @@
 # -*- coding: utf-8 -*-
 
-class Page:
-	id = 0
-	title = ""
-	text = ""
-
+from models import *
+from pyramid.httpexceptions import HTTPFound
 
 def root_view(request):
-    return {}
+	# show all pages
+    p = Page.all()
+    return { "pages":p }
 
 def create_page_view(request):
-    return {}
+    title = request.POST.get("title")
+    if not title:
+    	# 1st visit: show form
+        return {}
+    # filled form: save page
+    text = request.POST.get("text")
+    page = Page(title=title,text=text)
+    page.put()
+    return HTTPFound( "/" )#request.application_url )
 
 def view_page_view(request):
-	pagina = Page()
-	pagina.id = 1234
-	pagina.title = "Pàgina de prova"
-	pagina.text = u"una mica de continguts...<br>\nlalalala..."
-
-	return { "page": pagina }
+	# show a particular page
+    id = int(request.matchdict['id'])
+    p = Page.get_by_id(id)
+    return { "page": p }

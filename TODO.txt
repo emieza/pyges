@@ -1,7 +1,8 @@
 Parts del projecte:
 
 - pagines multillenguatge (model datastore)
-- gestió pestanyes, pagines, menus
+- gestió errors, forbidden page, etc. (login&)
+- gestió pestanyes, pagines, menus (ordre, timestamp)
 - editor WYSIWYG (CKeditor?)
 - disseny i custom CSS
 - categories (pagines,fotos,uploads)

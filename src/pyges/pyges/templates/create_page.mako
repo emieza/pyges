@@ -1,10 +1,10 @@
 
 <h1>Pyges: create page</h1>
 
-<form>
+<form method="post">
 	Name:<br>
-	<input type="text" name="pagename" /><br>
+	<input type="text" name="title" /><br>
 	Text:<br>
-	<textarea name="pagetext"></textarea><br>
+	<textarea name="text"></textarea><br>
 	<input type="submit" value="Send">
 </form>
