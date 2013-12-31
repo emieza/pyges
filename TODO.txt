@@ -1,16 +1,30 @@
-Parts del projecte:
+Parts del projecte PYGES:
 
 - pagines multillenguatge (model datastore)
-- gestió errors, forbidden page, etc. (login&)
-- gestió pestanyes, pagines, menus (ordre, timestamp)
-- editor WYSIWYG (CKeditor?)
-- disseny i custom CSS
-- categories (pagines,fotos,uploads)
+- site global config
+    - gestió pestanyes, pagines, menus (ordre, timestamp)
+- admin (auth, backend vs frontend)
+    - gestió errors, forbidden page, etc. (login&)
+- editor WYSIWYG (CKeditor, ...)
+- disseny (page rendering) i custom CSS (skins)
+
+
 - galeries de fotos (blobstore)
-- integració editor/galeries
-- visor galeries (tiltviewer, carroussel, jQuery UI, etc.)
+    - visor galeries (tiltviewer, carroussel, jQuery UI, etc.)
+    - integració editor/galeries
+- pagina de contacte (emails)
+
+- categories (pagines,fotos,uploads)
 - calendari events (datastore)
 - integració events google calendar
-- pagina de contacte (emails)
-- admin (auth, backend vs frontend)
 - 
+
+
+
+
+Site config:
+- languages
+- default lang
+- site name
+- default skin
+- admin users (by email)
