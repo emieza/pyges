@@ -1,1 +1,20 @@
 Pyges: a CMS in Python/Pyramid for Google App Engine
+
+You'll be able to 
+
+To build the project:
+ $ python bootstrap.py
+ $ bin/buildout
+
+To start the web server:
+ $ bin/devappserver parts/pyges
+
+To visit the development server, point your browser to:
+ http://localhost:8080
+
+To upload your project into your Google App Engine account:
+ $ cd parts
+ $ python google_appengine/appcfg.py update pyges -A <app_id>
+ 
+Note that you have to configure previously a GAE app that will determine
+your <app_id>.
