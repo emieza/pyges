@@ -26,6 +26,7 @@ def view_page_view(request):
     return { "page": p }
 
 def admin_config_view(request):
+    # config should be a singleton
     config = GlobalConfig.all().get()
     if not config:
         print "creanting initial site config..."
@@ -33,9 +34,10 @@ def admin_config_view(request):
             site_name = "Pyges Site",
             admin_users = []
         )
-    # TODO: check 
+    # TODO: check singleton (only one instance)
+    
+    # data have been sent: update site config
     if request.method=="POST":
-        # data have been sent: update site config
         site_name = request.POST.get("sitename")
         admin_users = request.POST.get("adminusers")
         config.site_name = site_name
