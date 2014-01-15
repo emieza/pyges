@@ -4,6 +4,10 @@ from models import *
 from pyramid.httpexceptions import HTTPFound
 
 # http://docs.pylonsproject.org/projects/pyramid_tutorials/en/latest/humans/forms_schemas/
+# widget summary
+# http://deformdemo.repoze.org/
+import colander, deform
+from colander import Schema
 from colander import MappingSchema
 from colander import SequenceSchema
 from colander import SchemaNode
@@ -22,22 +26,30 @@ def root_view(request):
     p = Page.all()
     return { "pages":p }
 
-class PageSchema(MappingSchema):
-    title = SchemaNode(String())
-    text = SchemaNode(Integer())
+class PageSchema(Schema):
+    title   = SchemaNode(String())
+    text    = SchemaNode( String(),
+                    #validator = Length(max=100),
+                    #widget = widget.TextAreaWidget(rows=10,cols=60),
+                    widget = widget.RichTextWidget(),
+                    description = "Write your page text here"
+                )
 
 def create_page_view(request):
-    """if request.method=="GET":
-    	# first visit: show form
-        return {}
-    # POST form: save page
-    title = request.POST.get("title")
-    text = request.POST.get("text")
-    page = Page(title=title,text=text)
-    page.put()
-    return HTTPFound( "/" )#request.application_url )"""
     schema = PageSchema()
-    form = Form(schema,buttons=("submit",))
+    form = Form( schema, buttons=("submit",) )
+    if 'submit' in request.POST:
+        controls = request.POST.items()
+        try:
+            appstruct = form.validate(controls)
+        except ValidationFailure, e:
+            return {'form':e.render(), 'values': False}
+        # Process the valid form data, do some work
+        values = {
+            "title": appstruct['title'],
+            "text": appstruct['text'],
+            }
+        return {"form": form.render(), "values": values}
     return {"form":form.render()}
 
 def view_page_view(request):
