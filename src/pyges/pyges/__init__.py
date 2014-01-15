@@ -24,12 +24,13 @@ def make_app():
 
     # ADMIN
     config.add_route( "create_page", "/create_page" )
-    config.add_view( views.create_page_view, route_name="create_page", renderer="create_page.mako" )
+    config.add_view( views.create_page_view, route_name="create_page", renderer="forms.mako" )
     config.add_route( "admin_config", "/admin/config" )
     config.add_view( views.admin_config_view, route_name="admin_config", renderer="admin_config.mako" )
 
     config.add_static_view(name='static',
                            path=os.path.join(__here__, 'static'))
+    config.add_static_view('deform_static', 'deform:static')
     
     return config.make_wsgi_app()
 

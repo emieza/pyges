@@ -20,7 +20,7 @@ class PyTest(Command):
         errno = pytest.main("")
         raise SystemExit(errno)
 
-requires = ['pyramid==1.4', 'jinja2']
+requires = ['pyramid', 'jinja2','deform','pyramid_debugtoolbar']
 test_requires = requires + ["pytest"]
 setup(name='pyges',
       version='0.0',
