@@ -7,7 +7,7 @@ To build the project:
  $ bin/buildout
 
 To start the web server:
- $ bin/devappserver parts/pyges
+ $ bin/devappserver parts/pyges --use_mtime_file_watcher
 
 To visit the development server, point your browser to:
  http://localhost:8080
