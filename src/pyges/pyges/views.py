@@ -44,3 +44,22 @@ def admin_config_view(request):
         config.admin_users = admin_users.split()
         config.put()
     return {"config":config}
+
+def upload_view(request):
+    if request.method=="GET":
+        # first visit: show form
+        return {}
+    # POST form: save page
+    titol = request.POST.get("titol")
+    imatge = request.POST.get("imatge")
+    categoria = request.POST.get("categoria")
+    img = Imatge(title=title,imatge=imatge,categoria=categoria)
+    img.put()
+    return HTTPFound( "/" )#request.application_url )
+
+
+
+
+
+
+
