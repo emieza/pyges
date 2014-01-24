@@ -2,6 +2,14 @@
 
 from google.appengine.ext import db
 
+class Imatge(db.Model):
+    titol = db.StringProperty(required=True)
+    data = db.DateTimeProperty(auto_now_add=True)
+    modificacio = db.DateTimeProperty(auto_now=True)
+    categoria = db.CategoryProperty(required=True)
+    usuari = db.UserProperty(required=True)
+    imatge = db.BlobProperty(required=True)
+
 class Page(db.Model):
     title = db.StringProperty(required=True)
     text = db.TextProperty(required=True)
