@@ -1,4 +1,3 @@
-
 <h1>Pyges: create page</h1>
 
 <form method="post">

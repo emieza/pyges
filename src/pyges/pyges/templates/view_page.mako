@@ -1,3 +1,9 @@
+##base.mako
+<%inherit file="base.mako"/>
+<%block name="header">
+	this is some header content
+</%block>
+this is body content
 
 <h1>Pyges: view page</h1>
 
