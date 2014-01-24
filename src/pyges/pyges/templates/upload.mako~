@@ -12,6 +12,7 @@
 		<option value="motor">Motor</option>
 		<option value="tecnologia">Tecnologia</option>
 	</select>
+	Imatge:<br>
 	<input type="file" name="imatge" />
 	<input type="submit" value="Send">
 </form>
