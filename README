@@ -18,3 +18,10 @@ To upload your project into your Google App Engine account:
  
 Note that you have to configure previously a GAE app that will determine
 your <app_id>.
+
+Problemes amb el joc de caràcters UTF-8
+
+En producció, quan integrem en Apache, apareixen problemes de la codificació per defecte (ASCII). La volem canviar a "utf-8".
+Cal editar /usr/lib/pythonX.Y/sitecustomize.py i afegir:
+import sys
+sys.setdefaultencoding('utf-8')
