@@ -23,7 +23,7 @@ def make_app():
     config.add_view( views.view_page_view, route_name="view_page", renderer="view_page.mako" )
 
     config.add_route( "upload", "/upload" )
-    canfig.add_view( views.upload_view, route_name="upload" renderer="upload.mako")
+    config.add_view( views.upload_view, route_name="upload", renderer="upload.mako")
 
     # ADMIN
     config.add_route( "create_page", "/create_page" )

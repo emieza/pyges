@@ -6,7 +6,9 @@ from pyramid.httpexceptions import HTTPFound
 def root_view(request):
 	# show all pages
     p = Page.all()
-    return { "pages":p }
+    f = Imatge.all()
+    return { "pages":p, "imatges":f }
+
 
 def create_page_view(request):
     if request.method=="GET":
@@ -53,7 +55,7 @@ def upload_view(request):
     titol = request.POST.get("titol")
     imatge = request.POST.get("imatge")
     categoria = request.POST.get("categoria")
-    img = Imatge(title=title,imatge=imatge,categoria=categoria)
+    img = Imatge(titol=titol,imatge=imatge,categoria=categoria)
     img.put()
     return HTTPFound( "/" )#request.application_url )
 

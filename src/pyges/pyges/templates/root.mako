@@ -4,6 +4,8 @@
 
 <a href="${request.route_url('create_page')}">Create new page</a>
 <br><br>
+<a href="${request.route_url('upload')}">Upload new photo</a>
+<br><br>
 Created pages:
 <ul>
 	% for page in pages:
@@ -11,3 +13,9 @@ Created pages:
 	% endfor
 </ul>
 
+Uploaded photos:
+<ul>
+	% for foto in imatges:
+		<li>${foto.titol}</li>
+	% endfor
+</ul>
