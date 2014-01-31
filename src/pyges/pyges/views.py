@@ -23,7 +23,8 @@ def view_page_view(request):
 	# show a particular page
     id = int(request.matchdict['id'])
     p = Page.get_by_id(id)
-    return { "page": p }
+    b = Page.all()
+    return { "page": p , "pages":b}
 
 def admin_config_view(request):
     # config should be a singleton
