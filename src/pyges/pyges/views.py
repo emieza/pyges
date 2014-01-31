@@ -61,6 +61,12 @@ def upload_view(request):
     img.put()
     return HTTPFound( "/" )#request.application_url )
 
+def view_picture_view(request):
+	# show a particular page
+    id = int(request.matchdict['id'])
+    p = Imatge.get_by_id(id)
+    return { "foto": p }
+
 
 
 

@@ -16,6 +16,6 @@ Created pages:
 Uploaded photos:
 <ul>
 	% for foto in imatges:
-		<li>${foto.titol}</li>
+		<li><a href="/view_picture/${foto.key().id()}">${foto.titol}</li>
 	% endfor
 </ul>
