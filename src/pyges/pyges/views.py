@@ -54,6 +54,8 @@ def upload_view(request):
     # POST form: save page
     titol = request.POST.get("titol")
     imatge = request.POST.get("imatge")
+    imatge = db.Blob(str(imatge))
+
     categoria = request.POST.get("categoria")
     img = Imatge(titol=titol,imatge=imatge,categoria=categoria)
     img.put()
