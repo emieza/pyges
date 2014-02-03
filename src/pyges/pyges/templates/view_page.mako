@@ -1,5 +1,6 @@
-
 <h1>Pyges: view page</h1>
+
+<h3>${langs[page.lang]}</h3>
 
 <h2>${page.title}</h2>
 

@@ -3,7 +3,7 @@
 from google.appengine.ext import db
 
 class Page(db.Model):
-    idsec = db.StringProperty(required=True)
+    idsec = db.IntegerProperty()
     lang = db.StringProperty(required=True)
     title = db.StringProperty(required=True)
     text = db.TextProperty(required=True)
