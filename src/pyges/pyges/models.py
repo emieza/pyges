@@ -7,8 +7,8 @@ class Imatge(db.Model):
     data = db.DateTimeProperty(auto_now_add=True)
     modificacio = db.DateTimeProperty(auto_now=True)
     categoria = db.CategoryProperty(required=True)
-    usuari = db.UserProperty(required=True)
-    imatge = db.BlobProperty(required=True)
+    usuari = db.UserProperty(required=False)
+    imatge = db.BlobProperty()
 
 class Page(db.Model):
     title = db.StringProperty(required=True)
