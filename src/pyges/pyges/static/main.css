@@ -15,7 +15,7 @@ div.footer {
 div.content{
 	color: white;
 	background:#000;
-	margin: 0 auto;
+margin: -21px auto 0;
 	width: 1100;
 	text-align:center;
 }
@@ -44,8 +44,8 @@ div.boto2{
 
 
 #centeredmenu {
-   margin: 0 auto;
    width: 1100;
+   margin: 0 auto;
    background:#fff;
    border-bottom:4px solid #000;
    overflow:hidden;
