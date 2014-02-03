@@ -59,10 +59,7 @@ def upload_view(request):
     categoria = request.POST.get("categoria")
 
     img = Imatge(title=title,imatge=imatge,categoria=categoria)
-<<<<<<< HEAD
-=======
-    respuesta =img.out.write(img)
->>>>>>> ca0b9c652f866e6fba5552212a3aeffa33849519
+
 
     img.put()
     return HTTPFound( "/" )#request.application_url )
