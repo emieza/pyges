@@ -59,7 +59,10 @@ def upload_view(request):
     categoria = request.POST.get("categoria")
 
     img = Imatge(title=title,imatge=imatge,categoria=categoria)
-    img.out.write(movie.picture)
+<<<<<<< HEAD
+=======
+    respuesta =img.out.write(img)
+>>>>>>> ca0b9c652f866e6fba5552212a3aeffa33849519
 
     img.put()
     return HTTPFound( "/" )#request.application_url )
@@ -67,8 +70,15 @@ def upload_view(request):
 def view_picture_view(request):
 	# show a particular page
     id = int(request.matchdict['id'])
-    p = Imatge.get_by_id(id)
-    return { "foto": p }
+    imatge = Imatge.get_by_id(id)
+    if imatge:
+        resp = Response( content_type="image/jpeg" )
+        resp.body = imatge.imatge
+        return resp
+    return Response("ERROR: imatge no trobada")
+
+
+
 
 
 
