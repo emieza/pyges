@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<title>Page editor - Ckeditor</title>
 		<script type="text/javascript" src="${h.url('/scripts/ckeditor.js')}"></script>
 	</head>
 <body>
