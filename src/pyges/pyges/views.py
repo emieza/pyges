@@ -71,7 +71,7 @@ def view_picture_view(request):
         resp = Response( content_type="image/jpeg" )
         resp.body = imatge.imatge
         return resp
-    return Response("ERROR: imatge no trobada")
+    return Response("ERROR: imatge no trobada").
 
 
 
