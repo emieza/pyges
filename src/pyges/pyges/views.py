@@ -60,12 +60,11 @@ def upload_view(request):
 
     img = Imatge(title=title,imatge=imatge,categoria=categoria)
 
-
     img.put()
     return HTTPFound( "/" )#request.application_url )
 
 def view_picture_view(request):
-	# show a particular page
+	# show a particular image
     id = int(request.matchdict['id'])
     imatge = Imatge.get_by_id(id)
     if imatge:

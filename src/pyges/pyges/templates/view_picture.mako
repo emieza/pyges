@@ -1,7 +1,7 @@
 
 <h1>Pyges: view page</h1>
 
-<h2>${foto.title}</h2>
+<h2>${foto.titol}</h2>
 
 
 <br>
