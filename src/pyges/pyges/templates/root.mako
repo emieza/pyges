@@ -10,7 +10,7 @@
 Created pages:
 <ul>
 	% for page in pages:
-		<li><a href="/view_page/${page.key().id()}">${page.title}</a> - ${page.lang}</li>
+		<li><a href="/view_page/${page.key().id()}">${page.title}</a> - ${langs[page.lang]}</li>
 	% endfor
 </ul>
 

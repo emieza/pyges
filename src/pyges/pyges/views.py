@@ -2,13 +2,14 @@
 
 from models import *
 from pyramid.httpexceptions import HTTPFound
-langs={"en":"English","ca":"Català","es":"Spanish"}
+langs={"en":"English","ca":"Català","es":"Español"}
 firstp=False
 
 def root_view(request):
+    global langs
 	# show all pages
     p = Page.all()
-    return { "pages":p }
+    return { "pages":p,"langs": langs}
 
 def create_page_view(request):
     global langs
@@ -60,7 +61,7 @@ def view_trans_view(request):
     global langs
     pages = Page.all()
     p = list_trans(pages)
-    return {"pages":p, "langs":langs, "oldpage":1}
+    return {"pages":p, "langs":langs}
 
 def create_trans_view(request):
     global langs
@@ -68,7 +69,7 @@ def create_trans_view(request):
         # first visit: show form
         id = int(request.matchdict['id'])
         p = Page.get_by_id(id)
-        return {"page":p, "langs": langs}
+        return {"page":p, "langs":langs}
     # POST form: save page
     idsec = int(request.POST.get("idsec"))
     lang = request.POST.get("lang")
@@ -77,6 +78,29 @@ def create_trans_view(request):
     page = Page(idsec=idsec,lang=lang,title=title,text=text)
     page.put() #desa a la BBDD
     return HTTPFound( "/" )#request.application_url )
+
+def delete_trans_view(request):
+    if request.method=="GET":
+        # first visit: show form
+        fn = request.matchdict['fn']
+        id = int(request.matchdict['id'])
+        pages = Page.all()
+        if fn == "one": # delete one translation (id)
+        	pass
+        if fn == "all": # delete all translation (idsec)
+            pass
+        p = Page.get_by_id(id)
+        return {"pages":p, "langs":langs}
+    # POST form: delete page
+    confirm = request.POST.get("confirm")
+    if confirm == 0:
+        # all pages
+        pass
+    if confirm == 1:
+        # only translate
+        pass
+    return HTTPFound( "/" )#request.application_url )
+
 
 def list_trans(pages):
     ids = [] # list secondary id (language group)
