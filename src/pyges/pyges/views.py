@@ -57,13 +57,10 @@ def upload_view(request):
     imatge = db.Blob(str(imatge))
 
     categoria = request.POST.get("categoria")
-<<<<<<< HEAD
+
     img = Imatge(title=title,imatge=imatge,categoria=categoria)
     img.out.write(movie.picture)
 
-=======
-    img = Imatge(titol=titol,imatge=imatge,categoria=categoria)
->>>>>>> 43aab093d0bdb91f92b3c8f0c1c198d83adb810b
     img.put()
     return HTTPFound( "/" )#request.application_url )
 
