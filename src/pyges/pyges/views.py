@@ -2,7 +2,7 @@
 
 from models import *
 from pyramid.httpexceptions import HTTPFound
-langs={"en":"English","ca":"Català","es":"Español"}
+langs={"en":"English","es":"Español","ca":"Català"}
 firstp=False
 
 def root_view(request):
@@ -83,7 +83,6 @@ def view_trans_view(request):
                     if page.lang == "ca":
                     	tbl[i]["title_ca"] = page.title
                         tbl[i]["id_ca"] = page.key().id()
-
     return {"table":tbl,"langs":langs}
 
 def create_trans_view(request):
@@ -125,8 +124,8 @@ def delete_trans_view(request):
         return {"pages":p,"langs":langs}
     # POST form: delete page
     confirm = request.POST.get("confirm")
-    if confirm == 0:
+    if confirm == "ok":
         pass
-    if confirm == 1:
+	else:
         pass
     return HTTPFound( "/" )#request.application_url )	
