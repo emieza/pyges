@@ -14,7 +14,7 @@
 </table>
 <br />
 <form method="post">
-	<input type="checkbox" name="confirm" value="ok"/>Delete confimation
+	<input type="checkbox" name="confirm" value="ok"/> Delete confimation
 	<br /><br />
 	<input type="submit" value="Send">
 </form>

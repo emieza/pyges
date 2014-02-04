@@ -55,13 +55,13 @@ def admin_config_view(request):
         config.put()
     return {"config":config}
 
-# translate functions
+# translation functions
 
 def view_trans_view(request):
     global langs
     pages = Page.all()
-    ids = [] # list secondary id (language group)
-    tbl = [] # table of pages, languages, delete, ...
+    ids = [] # list of secondary id (language group)
+    tbl = [] # table of titles and id for each language
     for page in pages:
         if not page.idsec in ids:
             ids.append(page.idsec)
@@ -102,7 +102,7 @@ def create_trans_view(request):
         for l in lex:
             del lop[l]
         return {"page":p, "langs":langs, "lop":lop}
-    # POST form: save page
+    # POST form: save translation page
     idsec = int(request.POST.get("idsec"))
     lang = request.POST.get("lang")
     title = request.POST.get("title")
@@ -122,10 +122,8 @@ def delete_trans_view(request):
             pass
         p = Page.get_by_id(id)
         return {"pages":p,"langs":langs}
-    # POST form: delete page
+    # POST form: delete translation page or page
     confirm = request.POST.get("confirm")
     if confirm == "ok":
-        pass
-    else:
         pass
     return HTTPFound( "/" )#request.application_url )	
