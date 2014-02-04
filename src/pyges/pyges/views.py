@@ -126,6 +126,6 @@ def delete_trans_view(request):
     confirm = request.POST.get("confirm")
     if confirm == "ok":
         pass
-	else:
+    else:
         pass
     return HTTPFound( "/" )#request.application_url )	
