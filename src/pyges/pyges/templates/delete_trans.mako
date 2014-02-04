@@ -1,19 +1,22 @@
 <h1>Pyges: delete translation</h1>
-<table>
-	<tr><td>
-		<div>Language: ${langs[page.lang]}</div>
-		<br />
-		<div>Name: ${page.title}</div>
-		<br />
-		<div>Text:</div>
-		<div>${page.text}</div>
-	</td></tr>
+<h3>description</h3>
+<table border="1">
+
+		<tr><td>
+			<div>Language: ${langs[page.lang]}</div>
+			<br />
+			<div>Name: ${page.title}</div>
+			<br />
+			<div>Text:</div>
+			<div>${page.text}</div>
+		</td></tr>
+
 </table>
 <br />
 <form method="post">
-	<input type="radio" name="confirm"/>Delete confimation
-	<br />
+	<input type="checkbox" name="confirm" value="ok"/>Delete confimation
+	<br /><br />
 	<input type="submit" value="Send">
 </form>
-<br>
-<a href="/">Return home</a>.
+
+<a href="/view_trans">Return view translations</a>

@@ -60,8 +60,31 @@ def admin_config_view(request):
 def view_trans_view(request):
     global langs
     pages = Page.all()
-    p = list_trans(pages)
-    return {"pages":p, "langs":langs}
+    ids = [] # list secondary id (language group)
+    tbl = [] # table of pages, languages, delete, ...
+    for page in pages:
+        if not page.idsec in ids:
+            ids.append(page.idsec)
+            if page.lang == "en":
+                tbl.append({"idsec":page.idsec,"title_en":page.title,"title_es":"","title_ca":"","id_en":page.key().id(),"id_es":"","id_ca":""})
+            if page.lang == "es":
+                tbl.append({"idsec":page.idsec,"title_en":"","title_es":page.title,"title_ca":"","id_en":"","id_es":page.key().id(),"id_ca":""})
+            if page.lang == "ca":
+                tbl.append({"idsec":page.idsec,"title_en":"","title_es":"","title_ca":page.title,"id_en":"","id_es":"","id_ca":page.key().id()})
+        else:
+            for i in range(len(tbl)):
+                if page.idsec == tbl[i]["idsec"]:
+                    if page.lang == "en":
+                    	tbl[i]["title_en"] = page.title
+                        tbl[i]["id_en"] = page.key().id()
+                    if page.lang == "es":
+                    	tbl[i]["title_es"] = page.title
+                        tbl[i]["id_es"] = page.key().id()
+                    if page.lang == "ca":
+                    	tbl[i]["title_ca"] = page.title
+                        tbl[i]["id_ca"] = page.key().id()
+
+    return {"table":tbl,"langs":langs}
 
 def create_trans_view(request):
     global langs
@@ -69,7 +92,17 @@ def create_trans_view(request):
         # first visit: show form
         id = int(request.matchdict['id'])
         p = Page.get_by_id(id)
-        return {"page":p, "langs":langs}
+        pages = Page.all()
+        lex = [] # existent languages
+        lex.append("none")
+        for page in pages:
+            if p.idsec == page.idsec:
+                lex.append(page.lang)
+        lop = langs.copy() # option languages
+        lop["none"] = "none"
+        for l in lex:
+            del lop[l]
+        return {"page":p, "langs":langs, "lop":lop}
     # POST form: save page
     idsec = int(request.POST.get("idsec"))
     lang = request.POST.get("lang")
@@ -82,39 +115,18 @@ def create_trans_view(request):
 def delete_trans_view(request):
     if request.method=="GET":
         # first visit: show form
-        fn = request.matchdict['fn']
-        id = int(request.matchdict['id'])
-        pages = Page.all()
-        if fn == "one": # delete one translation (id)
+        fn = request.matchdict['fn'] # function one (delete language page), all (delete all pages)
+        id = int(request.matchdict['id']) # function one (id), function all (idsec)
+        if fn == "one":
         	pass
-        if fn == "all": # delete all translation (idsec)
+        if fn == "all":
             pass
         p = Page.get_by_id(id)
-        return {"pages":p, "langs":langs}
+        return {"pages":p,"langs":langs}
     # POST form: delete page
     confirm = request.POST.get("confirm")
     if confirm == 0:
-        # all pages
         pass
     if confirm == 1:
-        # only translate
         pass
-    return HTTPFound( "/" )#request.application_url )
-
-
-def list_trans(pages):
-    ids = [] # list secondary id (language group)
-    p = [] # list of pages ordered by secondary id
-    for pag in pages:
-        if not pag.idsec in ids:
-            ids.append(pag.idsec)
-            pag.jump = True
-            p.append(pag)
-        else:
-            for i in range(len(p)):
-                if pag.idsec == p[i].idsec:
-                    pag.jump = True
-                    p[i].jump = False
-                    p.insert(i+1,pag)
-                    break
-    return p	
+    return HTTPFound( "/" )#request.application_url )	

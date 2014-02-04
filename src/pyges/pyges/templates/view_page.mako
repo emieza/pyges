@@ -7,4 +7,4 @@
 <div>${page.text}</div>
 
 <br>
-<a href="/">Return home</a>.
+<a href="/">Return home</a>
