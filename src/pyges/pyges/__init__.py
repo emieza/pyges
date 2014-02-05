@@ -32,6 +32,8 @@ def make_app():
     # TRANSLATE
     config.add_route( "view_trans", "/view_trans" )
     config.add_view( views.view_trans_view, route_name="view_trans", renderer="view_trans.mako" )
+    config.add_route( "edit_trans", "/edit_trans/{id}" )
+    config.add_view( views.edit_trans_view, route_name="edit_trans", renderer="edit_trans.mako" )
     config.add_route( "create_trans", "/create_trans/{id}" )
     config.add_view( views.create_trans_view, route_name="create_trans", renderer="create_trans.mako" )
     config.add_route( "delete_trans", "/delete_trans/{fn}/{id}" )

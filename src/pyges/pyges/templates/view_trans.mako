@@ -1,14 +1,37 @@
+<style type="text/css">
+	#vt_tbl_table { text-align:center; } /* table */
+	#vt_tbl_table a { text-decoration: none; color: #000} /* table links */
+	.vt_tbl_cel { border: 1px solid black; padding: 1px 5px; } /* each cell */
+	.vt_tbl_head { background-color: #f1edc2; } /* table head */
+	.vt_tbl_title_0 { background-color: #fdfcdc; } /* title cell pair (td) */
+	.vt_tbl_title_1 { background-color: #fcf6cf; } /* title cell add (td) */
+	.vt_tbl_edit { background-color: #eef3e2; } /* edit row (tr) */
+	.vt_tbl_trans { background-color: #ecf1ef; } /* translatin row (tr) */
+	.vt_tbl_del { background-color: #f6f0ed; } /* delete cel row (tr) */
+</style>
+
 <h1>Pyges: view translations</h1>
 <h3>description</h3>
-<table border="1" style="text-align:center;">
-	<tr>
-		<th>Titles</th>
-		<th colspan="3">Languages</th>
-		<th>Page</th>
-	</tr>
+<table id="vt_tbl_table">
 	% for tbl in table:
-		<tr>
-			<td rowspan="2">
+		% if tbl['count']%6 == 0:
+			<tr class="vt_tbl_head">
+				<th class="vt_tbl_cel" rowspan="2">Titles</th>
+				<th class="vt_tbl_cel" colspan="3">Lenguages</th>
+				<th class="vt_tbl_cel" rowspan="2">Page</th>
+			</tr>
+			<tr class="vt_tbl_head">
+				<th class="vt_tbl_cel">${langs['en']}</th>
+				<th class="vt_tbl_cel">${langs['es']}</th>
+				<th class="vt_tbl_cel">${langs['ca']}</th>
+			</tr>
+		% endif
+		<tr class="vt_tbl_edit">
+		% if tbl['count']%2 == 0:
+			<td class="vt_tbl_cel vt_tbl_title_0" rowspan="3">
+		% else:
+			<td class="vt_tbl_cel vt_tbl_title_1" rowspan="3">
+		% endif
 			% if tbl['id_en'] != "":
 				${tbl['title_en']}
 			% endif
@@ -26,37 +49,54 @@
 			% endif
 			</td>
 			% if tbl['id_en'] != "":
-				<td><a href="/create_trans/${tbl['id_en']}">${langs['en']}</a></td>
+				<td class="vt_tbl_cel"><a href="/edit_trans/${tbl['id_en']}">edit</a></td>
 			% else:
-				<td>&nbsp;</td>
+				<td class="vt_tbl_cel">&nbsp;</td>
 			% endif
 			% if tbl['id_es'] != "":
-				<td><a href="/create_trans/${tbl['id_es']}">${langs['es']}</a></td>
+				<td class="vt_tbl_cel"><a href="/edit_trans/${tbl['id_es']}">edit</a></td>
 			% else:
-				<td>&nbsp;</td>
+				<td class="vt_tbl_cel">&nbsp;</td>
 			% endif
 			% if tbl['id_ca'] != "":
-				<td><a href="/create_trans/${tbl['id_ca']}">${langs['ca']}</a></td>
+				<td class="vt_tbl_cel"><a href="/edit_trans/${tbl['id_ca']}">edit</a></td>
 			% else:
-				<td>&nbsp;</td>
+				<td class="vt_tbl_cel">&nbsp;</td>
 			% endif
-			<td rowspan="2"><a href="/delete_trans/all/${tbl['idsec']}">delete<br />all</a></td>
+			<td class="vt_tbl_cel vt_tbl_del" rowspan="3"><a href="/delete_trans/all/${tbl['idsec']}">delete<br />all</a></td>
 		</tr>
-		<tr>
+		<tr class="vt_tbl_trans">
 			% if tbl['id_en'] != "":
-				<td><a href="/delete_trans/one/${tbl['id_en']}">delete</a></td>
+				<td class="vt_tbl_cel"><a href="/create_trans/${tbl['id_en']}">create</a></td>
 			% else:
-				<td>&nbsp;</td>
+				<td class="vt_tbl_cel">&nbsp;</td>
 			% endif
 			% if tbl['id_es'] != "":
-				<td><a href="/delete_trans/one/${tbl['id_es']}">delete</a></td>
+				<td class="vt_tbl_cel"><a href="/create_trans/${tbl['id_es']}">create</a></td>
 			% else:
-				<td>&nbsp;</td>
+				<td class="vt_tbl_cel">&nbsp;</td>
 			% endif
 			% if tbl['id_ca'] != "":
-				<td><a href="/delete_trans/one/${tbl['id_ca']}">delete</a></td>
+				<td class="vt_tbl_cel"><a href="/create_trans/${tbl['id_ca']}">create</a></td>
 			% else:
-				<td>&nbsp;</td>
+				<td class="vt_tbl_cel">&nbsp;</td>
+			% endif
+		</tr>
+		<tr class="vt_tbl_del">
+			% if tbl['id_en'] != "":
+				<td class="vt_tbl_cel"><a href="/delete_trans/one/${tbl['id_en']}">delete</a></td>
+			% else:
+				<td class="vt_tbl_cel">&nbsp;</td>
+			% endif
+			% if tbl['id_es'] != "":
+				<td class="vt_tbl_cel"><a href="/delete_trans/one/${tbl['id_es']}">delete</a></td>
+			% else:
+				<td class="vt_tbl_cel">&nbsp;</td>
+			% endif
+			% if tbl['id_ca'] != "":
+				<td class="vt_tbl_cel"><a href="/delete_trans/one/${tbl['id_ca']}">delete</a></td>
+			% else:
+				<td class="vt_tbl_cel">&nbsp;</td>
 			% endif
 		</tr>
 	% endfor
