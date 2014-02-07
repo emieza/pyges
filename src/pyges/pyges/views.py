@@ -6,10 +6,9 @@ langs={"en":"English","es":"Español","ca":"Català"}
 firstp=False
 
 def root_view(request):
-    global langs
 	# show all pages
     p = Page.all()
-    return { "pages":p,"langs": langs}
+    return { "pages":p,"langs": Langs()}
 
 def create_page_view(request):
     global langs
@@ -155,3 +154,9 @@ def delete_trans_view(request):
                 if page.idsec == id:
                     page.delete()
     return HTTPFound( "/view_trans" )#request.application_url )	
+
+def Langs():
+    global langs
+    # ... change db to dictionary
+    # langs = {"en":"English","es":"Español","ca":"Català"}
+    return langs
