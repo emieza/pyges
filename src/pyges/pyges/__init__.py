@@ -34,7 +34,7 @@ def make_app():
 	
 	#UPDATE CSS
 	config.add_route( "updatecss", "/updatecss" )
-	config.add_view( views.updatecss_view, route_name="updatecss", renderer="update.mako" )
+	config.add_view( views.updatecss_view, route_name="updatecss", renderer="updatecss.mako" )
 	
 	config.add_static_view(name='static',path=os.path.join(__here__, 'static'))
 	

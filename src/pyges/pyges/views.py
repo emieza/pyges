@@ -6,7 +6,7 @@ from pyramid.httpexceptions import HTTPFound
 def editcss_view(request):
 	pass
 	
-def updatedcss_view(request):
+def updatecss_view(request):
 	pass
 
 def createskin_view(request):
