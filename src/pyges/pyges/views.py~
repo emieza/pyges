@@ -26,11 +26,6 @@ def send_mail(request):
         return {}
      # POST form: send mail
      message_body = "Hola,esto es una prueba del mail"
-     message = mail.EmailMessage(
-     sender='sundavar.l2@gmail.com',
-     to='sundavar.l2@gmail.com',
-     subject='Prueba enviar mail',
-     body=message_body)
 def view_page_view(request):
 	# show a particular page
     id = int(request.matchdict['id'])
