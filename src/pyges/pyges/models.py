@@ -2,13 +2,13 @@
 
 from google.appengine.ext import db
 
-class Imatge(db.Model):
-    titol = db.StringProperty(required=True)
-    data = db.DateTimeProperty(auto_now_add=True)
-    modificacio = db.DateTimeProperty(auto_now=True)
-    categoria = db.CategoryProperty(required=True)
-    usuari = db.UserProperty(required=False)
-    imatge = db.BlobProperty()
+class Picture(db.Model):
+    title = db.StringProperty(required=True)
+    date = db.DateTimeProperty(auto_now_add=True)
+    date_modify = db.DateTimeProperty(auto_now=True)
+    category = db.CategoryProperty(required=True)
+    user = db.UserProperty(required=False)
+    image = db.BlobProperty()
 
 class Page(db.Model):
     title = db.StringProperty(required=True)

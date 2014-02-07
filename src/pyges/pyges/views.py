@@ -6,8 +6,8 @@ from pyramid.httpexceptions import HTTPFound
 def root_view(request):
 	# show all pages
     p = Page.all()
-    f = Imatge.all()
-    return { "pages":p, "imatges":f }
+    pic = Picture.all()
+    return { "pages":p, "pictures": pic }
 
 
 def create_page_view(request):
@@ -19,7 +19,7 @@ def create_page_view(request):
     text = request.POST.get("text")
     page = Page(title=title,text=text)
     page.put()
-    return HTTPFound( "/" )#request.application_url )
+    return HTTPFound( "/" ) #request.application_url )
 
 def view_page_view(request):
 	# show a particular page
@@ -52,26 +52,27 @@ def upload_view(request):
         # first visit: show form
         return {}
     # POST form: save page
-    titol = request.POST.get("titol")
-    imatge = request.POST.get("imatge")
-    imatge = db.Blob(str(imatge))
+    title = request.POST.get("title")
+    picture = request.POST.get("image")
+    picture = db.Blob(str(picture))
 
-    categoria = request.POST.get("categoria")
+    category = request.POST.get("category")
 
-    img = Imatge(title=title,imatge=imatge,categoria=categoria)
+    img = Picture(title=title,image=picture,category=category)
 
     img.put()
+
     return HTTPFound( "/" )#request.application_url )
 
 def view_picture_view(request):
 	# show a particular image
     id = int(request.matchdict['id'])
-    imatge = Imatge.get_by_id(id)
-    if imatge:
+    image = Picture.get_by_id(id)
+    if image:
         resp = Response( content_type="image/jpeg" )
-        resp.body = imatge.imatge
+        resp.body = image.image
         return resp
-    return Response("ERROR: imatge no trobada")
+    return Response("ERROR: picture not found")
 
 
 

@@ -2,17 +2,17 @@
 <h1>Galeria: Puja una imatge</h1>
 
 <form method="post">
-	Titol:<br>
-	<input type="text" name="titol" /><br>
-	Categoria:<br>
-	<select name="categoria">
-		<option value="natura">Natura</option>
-		<option value="esport">Esports</option>
-		<option value="aventura">Aventura</option>
-		<option value="motor">Motor</option>
-		<option value="tecnologia">Tecnologia</option>
+	Title:<br>
+	<input type="text" name="title" /><br>
+	Category:<br>
+	<select name="category">
+		<option value="nature">nature</option>
+		<option value="sport">sport</option>
+		<option value="aventure">aventure</option>
+		<option value="motor">motor</option>
+		<option value="technology">technology</option>
 	</select>
-	Imatge:<br>
-	<input type="file" name="imatge" />
+	Image:<br>
+	<input type="file" name="image" />
 	<input type="submit" value="Send">
 </form>
