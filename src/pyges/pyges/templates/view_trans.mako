@@ -102,21 +102,4 @@
 	% endfor
 </table>
 <br />
-<table id="vt_tbl_table">
-	% for tbl in table:
-		% if tbl['count']%6 == 0:
-			<tr class="vt_tbl_head">
-				<th class="vt_tbl_cel" rowspan="2">Titles</th>
-				<th class="vt_tbl_cel" colspan="3">Lenguages</th>
-				<th class="vt_tbl_cel" rowspan="2">Page</th>
-			</tr>
-			<tr class="vt_tbl_head">
-				<th class="vt_tbl_cel">${langs['en']}</th>
-				<th class="vt_tbl_cel">${langs['es']}</th>
-				<th class="vt_tbl_cel">${langs['ca']}</th>
-			</tr>
-		% endif
-
-	% endfor
-</table>
 <a href="/">Return home</a>
