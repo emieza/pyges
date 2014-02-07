@@ -72,7 +72,7 @@ def view_picture_view(request):
         resp = Response( content_type="image/jpeg" )
         resp.body = image.image
         return resp
-    return Response("ERROR: picture not found")
+    return Response("ERROR: photo not found")
 
 
 
