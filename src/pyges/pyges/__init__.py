@@ -23,15 +23,15 @@ def make_app():
     config.add_view( views.view_page_view, route_name="view_page", renderer="view_page.mako" )
 
     # ADMIN
-    config.add_route( "create_page", "/create_page" )
-    config.add_view( views.create_page_view, route_name="create_page", renderer="create_page.mako" )
-    config.add_route( "admin_config", "/admin/config" )
-    config.add_view( views.admin_config_view, route_name="admin_config", renderer="admin_config.mako" )
-
+	config.add_route( "create_page", "/create_page" )
+	config.add_view( views.create_page_view, route_name="create_page", renderer="create_page.mako" )
+	config.add_route( "admin_config", "/admin/config" )
+	config.add_view( views.admin_config_view, route_name="admin_config", renderer="admin_config.mako" )
+    
 	#CREATE CSS
 	config.add_route( "createskin", "/createcss" )
-    config.add_view( views.createskin_view, route_name="createskin", renderer="createskin.mako" )
-
+	config.add_view( views.createskin_view, route_name="createskin", renderer="createskin.mako" )
+	
 	#EDIT CSS
 	config.add_route( "editcss", "/editcss" )
     config.add_view( views.editcss_view, route_name="editcss", renderer="editcss.mako" )

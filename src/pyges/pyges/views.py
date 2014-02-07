@@ -10,7 +10,12 @@ def updatedcss_view(request):
 
 
 def createskin_view(request):
-
+	id = int(request.POST['id'])
+	nom = request.POST['nom']
+	contingut = request.POST['contingut']
+	
+	estil = Estils(id=id,nom=nom,contingut=contingut)
+	estil.put()
 
 def root_view(request):
 	# show all pages
