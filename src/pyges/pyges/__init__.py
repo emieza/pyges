@@ -28,6 +28,20 @@ def make_app():
     config.add_route( "admin_config", "/admin/config" )
     config.add_view( views.admin_config_view, route_name="admin_config", renderer="admin_config.mako" )
 
+	#CREATE CSS
+	config.add_route( "createskin", "/createcss" )
+    config.add_view( views.createskin_view, route_name="createskin", renderer="createskin.mako" )
+
+	#EDIT CSS
+	config.add_route( "editcss", "/editcss" )
+    config.add_view( views.editcss_view, route_name="editcss", renderer="editcss.mako" )
+    
+    #UPDATE CSS
+	config.add_route( "updatecss", "/updatecss" )
+    config.add_view( views.updatecss_view, route_name="updatecss", renderer="update.mako" )
+    
+    
+
     config.add_static_view(name='static',
                            path=os.path.join(__here__, 'static'))
     

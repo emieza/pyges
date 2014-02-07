@@ -6,6 +6,11 @@ class Page(db.Model):
     title = db.StringProperty(required=True)
     text = db.TextProperty(required=True)
 
+class Estils(db.Model):
+	id = db.IntegerProperty(required=True)
+	nom = db.StringProperty(required=True)
+	contingut = db.TextProperty(required=True)
+
 class GlobalConfig(db.Model):
     site_name = db.StringProperty()
     admin_users = db.StringListProperty()

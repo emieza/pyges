@@ -3,6 +3,15 @@
 from models import *
 from pyramid.httpexceptions import HTTPFound
 
+def editcss_view(request):
+	
+	
+def updatedcss_view(request):
+
+
+def createskin_view(request):
+
+
 def root_view(request):
 	# show all pages
     p = Page.all()
