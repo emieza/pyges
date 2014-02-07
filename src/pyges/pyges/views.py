@@ -131,14 +131,27 @@ def delete_trans_view(request):
         # first visit: show form
         fn = request.matchdict['fn'] # function one (delete language page), all (delete all pages)
         id = int(request.matchdict['id']) # function one (id), function all (idsec)
+        p = []
         if fn == "one":
-        	pass
+            page = Page.get_by_id(id)
+            p.append(page)
         if fn == "all":
-            pass
-        p = Page.get_by_id(id)
-        return {"pages":p,"langs":langs}
+            pages = Page.all()
+            for page in pages:
+                if page.idsec == id:
+                    p.append(page)
+        return {"pages":p,"langs":langs,"fn":fn,"id":id}
     # POST form: delete translation page or page
+    fn = request.POST.get("fn")
+    id = int(request.POST.get("id"))
     confirm = request.POST.get("confirm")
     if confirm == "ok":
-        pass
+        if fn == "one":
+            page = Page.get_by_id(id)
+            page.delete()
+        if fn == "all":
+            pages = Page.all()
+            for page in pages:
+                if page.idsec == id:
+                    page.delete()
     return HTTPFound( "/view_trans" )#request.application_url )	
