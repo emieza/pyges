@@ -1,7 +1,7 @@
+
 <html>
 	<head>
-		<title>Page editor - Ckeditor</title>
-		<script type="text/javascript" src="/scripts/CKeditor/ckeditor.js"></script>
+		<title>Create Pages</title>
 	</head>
 <body>
 	<h1>Pyges: create page</h1>
@@ -10,7 +10,7 @@
 		Name:<br>
 		<input type="text" name="title" /><br>
 		Text:<br>
-		<textarea class="ckeditor" name="text" rows="8" cols="80"></textarea><br>
+		<textarea name="text" rows="8" cols="80"></textarea><br>
 		<input type="submit" value="Send">
 	</form>
 </body>

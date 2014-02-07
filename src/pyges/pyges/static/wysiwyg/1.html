@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+-->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Replace Textareas by Class Name &mdash; CKEditor Sample</title>
+		<script type="text/javascript" src="tinymce/tinymce.min.js"></script>
+		<script type="text/javascript">
+			tinymce.init({
+				selector : "textarea",
+				theme : "modern",
+				width : 680,
+				height : 300,
+				plugins : ["advlist autolink link image lists charmap print preview hr anchor pagebreak", "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking", "table contextmenu directionality emoticons paste textcolor responsivefilemanager filemanager"],
+				toolbar1 : "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+				toolbar2 : "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code ",
+				image_advtab : true,
+				relative_urls : false,
+				external_filemanager_path : "filemanager/",
+				filemanager_title : "Responsive Filemanager",
+			});
+		</script>
+	</head>
+	<body>
+		<h1 class="samples">CKEditor Samples</h1>
+		<div style="width: 1000px; margin:auto;">
+			<form action="hola.php" method="post">
+				<textarea cols="80" id="editor1" name="editor1" rows="10"></textarea>
+			</form>
+		</div>
+	</body>
+</html>
