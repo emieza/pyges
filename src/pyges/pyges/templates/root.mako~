@@ -10,5 +10,5 @@ Created pages:
 		<li><a href="/view_page/${page.key().id()}">${page.title}</a></li>
 	% endfor
 </ul>
-<a href="${request.route_url('create_page')}">Contact</a>
+<a href="send_mail.mako">Contact</a>
 

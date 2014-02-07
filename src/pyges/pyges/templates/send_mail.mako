@@ -10,3 +10,7 @@
 	<textarea name="text" rows="8" cols="80"></textarea><br>
 	<input type="submit" value="Send">
 </form>
+% if missatge:
+	${missatge} 
+	
+% endif

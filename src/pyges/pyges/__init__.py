@@ -26,8 +26,8 @@ def make_app():
     config.add_view( views.create_page_view, route_name="create_page", renderer="create_page.mako" )
     config.add_route( "admin_config", "/admin/config" )
     config.add_view( views.admin_config_view, route_name="admin_config", renderer="admin_config.mako" )
-    config.add_view(views.send_mail,route_name="send_mail", renderer="send_mail.mako")
     config.add_route("send_mail","/send_mail")
+    config.add_view(views.send_mail,route_name="send_mail", renderer="send_mail.mako")
     config.add_static_view(name='static',
                            path=os.path.join(__here__, 'static'))
     
