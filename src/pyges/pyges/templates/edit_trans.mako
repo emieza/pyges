@@ -19,4 +19,6 @@
 	</form>
 </td></tr></table>
 <br />
-<a href="/menu_trans">Return view translations</a>
+<a href="/menu_trans">Return menu translations</a>
+<br />
+<a href="/">Return home</a>

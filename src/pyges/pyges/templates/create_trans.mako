@@ -1,6 +1,6 @@
 <style type="text/css">
-	.ct_tbl_cel { border: 1px solid black; padding: 5px; width:50%;} /* each cell */
-	.ct_tbl_div { width: 100%; height: 100%}
+	.ct_tbl_cel { border: 1px solid black; padding: 5px; width:50%; } /* each cell */
+	.ct_tbl_div { width: 100%; height: 100%; }
 </style>
 <script type="text/javascript">
 	window.onload = first_sel;
@@ -59,4 +59,6 @@
 	</tr>
 </table>
 <br />
-<a href="/menu_trans">Return view translations</a>
+<a href="/menu_trans">Return menu translations</a>
+<br />
+<a href="/">Return home</a>
