@@ -2,19 +2,17 @@
 
 from models import *
 from pyramid.httpexceptions import HTTPFound
-langs={"en":"English","es":"Español","ca":"Català"}
-firstp=False
+#firstp=False
 
 def root_view(request):
 	# show all pages
     p = Page.all()
-    return { "pages":p,"langs": Langs()}
+    return { "pages":p,"langs": langs()}
 
 def create_page_view(request):
-    global langs
     if request.method=="GET":
     	# first visit: show form
-        return {"langs": langs}
+        return {"langs": langs()}
     # POST form: save page
     lang = request.POST.get("lang")
     title = request.POST.get("title")
@@ -26,12 +24,11 @@ def create_page_view(request):
     return HTTPFound( "/" ) #request.application_url )
 
 def view_page_view(request):
-    global langs
 	# show a particular page
     id = int(request.matchdict['id'])
     #crear id2(copia id) + id idioma
     p = Page.get_by_id(id)
-    return { "page": p, "langs":langs}
+    return { "page": p, "langs":langs()}
 
 def admin_config_view(request):
     # config should be a singleton
@@ -56,7 +53,6 @@ def admin_config_view(request):
 # translation functions
 
 def menu_trans_view(request):
-    global langs
     pages = Page.all()
     ids = [] # list of secondary id (language group)
     tbl = [] # table id secondary, titles and id for each language
@@ -83,15 +79,14 @@ def menu_trans_view(request):
                     if page.lang == "ca":
                         tbl[i]["title_ca"] = page.title
                         tbl[i]["id_ca"] = page.key().id()
-    return {"table":tbl,"langs":langs}
+    return {"table":tbl,"langs":langs()}
 
 def edit_trans_view(request):
-    global langs
     if request.method=="GET":
         # first visit: show form
         id = int(request.matchdict['id'])
         p = Page.get_by_id(id)
-        return {"page":p,"langs":langs,"id":id}
+        return {"page":p,"langs":langs(),"id":id}
     # POST form: save translation page
     id = int(request.POST.get("id"))
     p = Page.get_by_id(id)
@@ -109,8 +104,8 @@ def create_trans_view(request):
         exl = {} # existing languages
         for page in pages:
             if page.idsec == id:
-                exl[page.lang] = Langs()[page.lang]
-        return {"langs":Langs(),"exl":exl,"ln":ln,"idsec":id}
+                exl[page.lang] = langs()[page.lang]
+        return {"langs":langs(),"exl":exl,"ln":ln,"idsec":id}
     # POST form: save translation page
     idsec = int(request.POST.get("idsec"))
     lang = request.POST.get("lang")
@@ -133,7 +128,7 @@ def view_trans_view(request):
             for page in pages:
                 if page.idsec == id:
                     p = page
-        return {"page":p,"langs":langs}
+        return {"page":p,"langs":langs()}
 
 def delete_trans_view(request):
     if request.method=="GET":
@@ -149,7 +144,7 @@ def delete_trans_view(request):
             for page in pages:
                 if page.idsec == id:
                     p.append(page)
-        return {"pages":p,"langs":langs,"fn":fn,"id":id}
+        return {"pages":p,"langs":langs(),"fn":fn,"id":id}
     # POST form: delete translation page or page
     fn = request.POST.get("fn")
     id = int(request.POST.get("id"))
@@ -165,7 +160,7 @@ def delete_trans_view(request):
                     page.delete()
     return HTTPFound( "/menu_trans" )#request.application_url )	
 
-def Langs():
+def langs():
     # ... change db to dictionary
     l = {"en":"English","es":"Español","ca":"Català"}
     return l
