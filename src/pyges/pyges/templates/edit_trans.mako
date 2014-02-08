@@ -8,15 +8,15 @@
 	<form method="post">
 		<input type="text" name="id" value="${id}" style="display:none;"/>
 		<strong>Language: </strong>${langs[page.lang]}
-		<br><br>
+		<br /><br />
 		<strong>Title: </strong><input type="text" name="title" value="${page.title}"/>
-		<br><br>
+		<br /><br />
 		<strong>Text: </strong>
-		<br>
+		<br />
 		<textarea name="text" rows="8" cols="80">${page.text}</textarea>
-		<br><br>
+		<br /><br />
 		<input type="submit" value="Send">
 	</form>
 </td></tr></table>
-<br>
-<a href="/view_trans">Return view translations</a>
+<br />
+<a href="/menu_trans">Return view translations</a>

@@ -55,7 +55,7 @@ def admin_config_view(request):
 
 # translation functions
 
-def view_trans_view(request):
+def menu_trans_view(request):
     global langs
     pages = Page.all()
     ids = [] # list of secondary id (language group)
@@ -75,13 +75,13 @@ def view_trans_view(request):
             for i in range(len(tbl)):
                 if page.idsec == tbl[i]["idsec"]:
                     if page.lang == "en":
-                    	tbl[i]["title_en"] = page.title
+                        tbl[i]["title_en"] = page.title
                         tbl[i]["id_en"] = page.key().id()
                     if page.lang == "es":
-                    	tbl[i]["title_es"] = page.title
+                        tbl[i]["title_es"] = page.title
                         tbl[i]["id_es"] = page.key().id()
                     if page.lang == "ca":
-                    	tbl[i]["title_ca"] = page.title
+                        tbl[i]["title_ca"] = page.title
                         tbl[i]["id_ca"] = page.key().id()
     return {"table":tbl,"langs":langs}
 
@@ -98,24 +98,19 @@ def edit_trans_view(request):
     p.title = request.POST.get("title")
     p.text = request.POST.get("text")
     p.put() #desa a la BBDD
-    return HTTPFound( "/view_trans" )#request.application_url )
+    return HTTPFound( "/menu_trans" )#request.application_url )
 
 def create_trans_view(request):
-    global langs
     if request.method=="GET":
         # first visit: show form
-        id = int(request.matchdict['id'])
-        p = Page.get_by_id(id)
+        ln = request.matchdict['ln'] # selected language
+        id = int(request.matchdict['id']) # id secondary
         pages = Page.all()
-        lex = [] # existing languages
+        exl = {} # existing languages
         for page in pages:
-            if p.idsec == page.idsec:
-                lex.append(page.lang)
-        lop = langs.copy() # option languages
-        for l in lex:
-            if l in lop:
-                del lop[l]
-        return {"page":p,"langs":langs,"lop":lop}
+            if page.idsec == id:
+                exl[page.lang] = Langs()[page.lang]
+        return {"langs":Langs(),"exl":exl,"ln":ln,"idsec":id}
     # POST form: save translation page
     idsec = int(request.POST.get("idsec"))
     lang = request.POST.get("lang")
@@ -123,7 +118,22 @@ def create_trans_view(request):
     text = request.POST.get("text")
     page = Page(idsec=idsec,lang=lang,title=title,text=text)
     page.put() #desa a la BBDD
-    return HTTPFound( "/view_trans" )#request.application_url )
+    return HTTPFound( "/menu_trans" )#request.application_url )
+
+def view_trans_view(request):
+    if request.method=="GET":
+        ln = request.matchdict['ln'] # selected language
+        id = int(request.matchdict['id']) # id secondary
+        pages = Page.all()
+        p = ""
+        for page in pages:
+            if page.idsec == id and page.lang == ln:
+                p = page
+        if p == "":
+            for page in pages:
+                if page.idsec == id:
+                    p = page
+        return {"page":p,"langs":langs}
 
 def delete_trans_view(request):
     if request.method=="GET":
@@ -153,10 +163,9 @@ def delete_trans_view(request):
             for page in pages:
                 if page.idsec == id:
                     page.delete()
-    return HTTPFound( "/view_trans" )#request.application_url )	
+    return HTTPFound( "/menu_trans" )#request.application_url )	
 
 def Langs():
-    global langs
     # ... change db to dictionary
-    # langs = {"en":"English","es":"Español","ca":"Català"}
-    return langs
+    l = {"en":"English","es":"Español","ca":"Català"}
+    return l

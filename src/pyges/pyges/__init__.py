@@ -21,7 +21,6 @@ def make_app():
 
     config.add_route( "view_page", "/view_page/{id}" )
     config.add_view( views.view_page_view, route_name="view_page", renderer="view_page.mako" )
-    
 
     # ADMIN
     config.add_route( "create_page", "/create_page" )
@@ -30,12 +29,14 @@ def make_app():
     config.add_view( views.admin_config_view, route_name="admin_config", renderer="admin_config.mako" )
 
     # TRANSLATE
-    config.add_route( "view_trans", "/view_trans" )
-    config.add_view( views.view_trans_view, route_name="view_trans", renderer="view_trans.mako" )
+    config.add_route( "menu_trans", "/menu_trans" )
+    config.add_view( views.menu_trans_view, route_name="menu_trans", renderer="menu_trans.mako" )
     config.add_route( "edit_trans", "/edit_trans/{id}" )
     config.add_view( views.edit_trans_view, route_name="edit_trans", renderer="edit_trans.mako" )
-    config.add_route( "create_trans", "/create_trans/{id}" )
+    config.add_route( "create_trans", "/create_trans/{ln}/{id}" )
     config.add_view( views.create_trans_view, route_name="create_trans", renderer="create_trans.mako" )
+    config.add_route( "view_trans", "/view_trans/{ln}/{id}" )
+    config.add_view( views.view_trans_view, route_name="view_trans", renderer="view_trans.mako" )
     config.add_route( "delete_trans", "/delete_trans/{fn}/{id}" )
     config.add_view( views.delete_trans_view, route_name="delete_trans", renderer="delete_trans.mako" )
 

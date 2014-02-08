@@ -25,4 +25,4 @@
 	<input type="submit" value="Send">
 </form>
 
-<a href="/view_trans">Return view translations</a>
+<a href="/menu_trans">Return view translations</a>
