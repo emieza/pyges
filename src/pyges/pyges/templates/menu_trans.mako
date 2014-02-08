@@ -1,11 +1,11 @@
 <style type="text/css">
 	#mt_tbl_table { border: 1px solid black; text-align:right; } /* table */
-	.mt_tbl_row_0 { background-color: #ecf1ef; } /* title cell pair (td) */
-	.mt_tbl_row_1 { background-color: #f6f9ed; } /* title cell add (td) */
-	.mt_tbl_cel { padding: 10px; height: 100px;} /* each cell */
+	.mt_tbl_row_0 { background-color: #fcf6cf; } /* title cell pair (td) */
+	.mt_tbl_row_1 { background-color: #fdfcdc; } /* title cell add (td) */
+	.mt_tbl_cel { padding: 10px; height: 110px; vertical-align: top; } /* each cell */
 	.mt_tbl_sel { width: 130px; text-align: center; }
-	.mt_tbl_hr_0 { color:#f6f9ed; background-color:#f6f9ed; height:1px; border:none; }
-	.mt_tbl_hr_1 { color:#ecf1ef; background-color:#ecf1ef; height:1px; border:none; }
+	.mt_tbl_hr_0 { color:#fdfcdc; background-color:#fdfcdc; height:1px; border:none; }
+	.mt_tbl_hr_1 { color:#fcf6cf; background-color:#fcf6cf; height:1px; border:none; }
 </style>
 <script type="text/javascript">
 	function select_option(sel){
