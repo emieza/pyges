@@ -14,11 +14,11 @@ def updatecss_view(request):
 	
 	print id
 	
-	for element in e:
-		if element.id == id:
-			contingut = element.contingut
+	#for element in e:
+	#	if element.id == id:
+	#		contingut = element.contingut
 			
-	return{"contingut":contingut}
+	return{"contingut":"contingut"}
 
 def createskin_view(request):
 	return {"create":"create skin"}
