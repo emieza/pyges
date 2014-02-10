@@ -2,6 +2,7 @@
 
 from models import *
 from pyramid.httpexceptions import HTTPFound
+from pyramid.response import Response
 
 def root_view(request):
 	# show all pages
@@ -68,10 +69,12 @@ def view_picture_view(request):
 	# show a particular image
     id = int(request.matchdict['id'])
     image = Picture.get_by_id(id)
+    
     if image:
         resp = Response( content_type="image/jpeg" )
         resp.body = image.image
         return resp
+
     return Response("ERROR: photo not found")
 
 
