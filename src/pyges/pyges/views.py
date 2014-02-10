@@ -10,7 +10,7 @@ def editcss_view(request):
 def updatecss_view(request):
 	e = Estils.all()
 	
-	id = int(request.POST['id'])
+	id = int(request.POST['skinselect'])
 	
 	print id
 	
