@@ -5,7 +5,7 @@ from pyramid.httpexceptions import HTTPFound
 
 def editcss_view(request):
 	e = Estils.all()
-    return { "listskins":e }
+	return { "listskins":e }
 	
 def updatecss_view(request):
 	pass
