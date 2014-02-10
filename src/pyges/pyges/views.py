@@ -10,7 +10,7 @@ def updatecss_view(request):
 	pass
 
 def createskin_view(request):
-	pass
+	return {"create":"create skin"}
 	
 def confirmcreate_view(request):
 	id = int(request.POST['id'])
@@ -19,6 +19,8 @@ def confirmcreate_view(request):
 	
 	estil = Estils(id=id,nom=nom,contingut=contingut)
 	estil.put()
+	
+	return {"create":"create skin"}
 
 def root_view(request):
 	# show all pages

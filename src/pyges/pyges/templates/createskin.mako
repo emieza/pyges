@@ -1,6 +1,6 @@
-<h1>Pyges: create skin</h1>
+<h1>Pyges: ${create}</h1>
 
-<form method="post" action="confirmcreate.mako">
+<form method="post" action="confirmcreate">
 	Id:<br>
 	<input type="text" name="id" /><br>
 	Name:<br>
