@@ -25,12 +25,20 @@ def send_mail(request):
     	# first visit: show form
         return {}
      # POST form: send mail
-     message_body = "Hola,esto es una prueba del mail"
+     try:
+     	fname=request.POST["firstname"]
+ 	sname=request.POST["surname"]
+	email=request.POST["mail"]
+	msg=request.POST["text"]
+     except:
+	return {'missatge':'Omple tots els camps'}
+     message_body = "<h3>"+ fname + " " + sname + "</h3><h5>" + email + "</h5>" + msg
      mail.send_mail(
      sender='sundavar.l2@gmail.com',
      to='sundavar.l2@gmail.com',
      subject='Prueba enviar mail',
-     body=message_body)
+     body=fname+" "+sname+" "+email+" "+msg,     
+     html=message_body)
      return{'missatge':'Misatge enviat'}
 def view_page_view(request):
 	# show a particular page
