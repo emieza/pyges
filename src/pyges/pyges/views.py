@@ -8,7 +8,15 @@ def editcss_view(request):
 	return { "listskins":e }
 	
 def updatecss_view(request):
-	pass
+	e = Estils.all()
+	
+	id = int(request.POST['id'])
+	
+	for element in e:
+		if element.id = id:
+			contingut = element.contingut
+			
+	return{"contingut":contingut}
 
 def createskin_view(request):
 	return {"create":"create skin"}
