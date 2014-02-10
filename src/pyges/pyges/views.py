@@ -13,7 +13,7 @@ def updatecss_view(request):
 	id = int(request.POST['id'])
 	
 	for element in e:
-		if element.id = id:
+		if element.id == id:
 			contingut = element.contingut
 			
 	return{"contingut":contingut}
