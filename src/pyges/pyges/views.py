@@ -26,8 +26,8 @@ def confirmupdate_view(request):
 	for element in e:
 		if element.id == id:
 			element.contingut = contingut
+			element.put()
 	
-	e.put()
 	
 	return {"edit":"edit skin"}
 
