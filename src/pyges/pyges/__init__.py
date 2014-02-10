@@ -25,8 +25,12 @@ def make_app():
 	config.add_view( views.admin_config_view, route_name="admin_config", renderer="admin_config.mako" )
 	
 	#CREATE CSS
-	config.add_route( "createskin", "/createcss" )
+	config.add_route( "createskin", "/createskin" )
 	config.add_view( views.createskin_view, route_name="createskin", renderer="createskin.mako" )
+	
+	#CONFIRM CREATE CSS
+	config.add_route( "confirmcreate", "/confirmcreate" )
+	config.add_view( views.confirmcreate_view, route_name="confirmcreate", renderer="confirmcreate.mako" )
 	
 	#EDIT CSS
 	config.add_route( "editcss", "/editcss" )

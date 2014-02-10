@@ -10,6 +10,9 @@ def updatecss_view(request):
 	pass
 
 def createskin_view(request):
+	pass
+	
+def confirmcreate_view(request):
 	id = int(request.POST['id'])
 	nom = request.POST['nom']
 	contingut = request.POST['contingut']
