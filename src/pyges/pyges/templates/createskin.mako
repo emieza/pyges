@@ -44,3 +44,5 @@ div.boto2{
 	</textarea><br>
 	<input type="submit" value="Create skin">
 </form>
+<br/>
+<a href="/">Return home</a>
