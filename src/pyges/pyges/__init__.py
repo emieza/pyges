@@ -28,6 +28,9 @@ def make_app():
     config.add_route( "view_picture", "/view_picture/{id}" )
     config.add_view( views.view_picture_view, route_name="view_picture")
 
+    config.add_route( "view_all_images", "/view_all_images" )
+    config.add_view( views.view_all_images_view, route_name="view_all_images", renderer="view_all_images.mako")
+
     # ADMIN
     config.add_route( "create_page", "/create_page" )
     config.add_view( views.create_page_view, route_name="create_page", renderer="create_page.mako" )

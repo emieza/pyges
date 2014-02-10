@@ -19,3 +19,5 @@ Uploaded photos:
 		<li><a href="/view_picture/${picture.key().id()}">${picture.title}</li>
 	% endfor
 </ul>
+
+<a href="${request.route_url('view_all_images')}">View all images</a>

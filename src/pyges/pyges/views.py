@@ -78,10 +78,10 @@ def view_picture_view(request):
 
     return Response("ERROR: photo not found")
 
-def view_all_images(request):
-	pic = Picture.all()
+def view_all_images_view(request):
+    pic = Picture.all()
+    	
     return { "pictures": pic }
-
 
 
 
