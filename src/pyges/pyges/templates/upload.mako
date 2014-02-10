@@ -1,4 +1,3 @@
-
 <h1>Galeria: Puja una imatge</h1>
 
 <form method="post" enctype="multipart/form-data">
