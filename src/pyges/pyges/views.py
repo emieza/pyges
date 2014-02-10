@@ -54,12 +54,12 @@ def upload_view(request):
         return {}
     # POST form: save page
     title = request.POST.get("title")
-    picture = request.POST.get("image")
-    picture = db.Blob(str(picture))
+    picture = request.POST.get("image").file.read()
+    blob = db.Blob(picture)
 
     category = request.POST.get("category")
 
-    img = Picture(title=title,image=picture,category=category)
+    img = Picture(title=title,image=blob,category=category)
 
     img.put()
 
@@ -72,6 +72,7 @@ def view_picture_view(request):
     
     if image:
         resp = Response( content_type="image/jpeg" )
+        #resp = Response(image.category)
         resp.body = image.image
         return resp
 

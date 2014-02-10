@@ -1,7 +1,7 @@
 
 <h1>Galeria: Puja una imatge</h1>
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 	Title:<br>
 	<input type="text" name="title" /><br>
 	Category:<br>
