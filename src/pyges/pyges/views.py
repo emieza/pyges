@@ -17,6 +17,9 @@ def updatecss_view(request):
 			contingut = element.contingut
 			
 	return{"contingut":contingut}
+	
+def confirmupdate_view(request):
+	return {"edit":"edit skin"}
 
 def createskin_view(request):
 	return {"create":"create skin"}

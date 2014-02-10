@@ -40,6 +40,10 @@ def make_app():
 	config.add_route( "updatecss", "/updatecss" )
 	config.add_view( views.updatecss_view, route_name="updatecss", renderer="updatecss.mako" )
 	
+	#CONFIRM UPDATE CSS
+	config.add_route( "confirmupdate", "/confirmupdate" )
+	config.add_view( views.confirmupdate_view, route_name="confirmupdate", renderer="confirmupdate.mako" )
+	
 	config.add_static_view(name='static',path=os.path.join(__here__, 'static'))
 	
 	return config.make_wsgi_app()
