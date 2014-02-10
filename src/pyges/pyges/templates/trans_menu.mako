@@ -50,7 +50,7 @@
 		</td>
 		<td class="mt_tbl_cel">
 		% if tbl['id_en'] != "" or tbl['id_es'] != "" or tbl['id_ca'] != "":
-			<select class="mt_tbl_sel" name="edit_trans" onchange="select_option(this)">
+			<select class="mt_tbl_sel" name="trans_edit" onchange="select_option(this)">
 				<option value="" disabled="disabled" selected="selected">Edit</option>
 			% if tbl['id_en'] != "":
 				<option value="${tbl['id_en']}">${langs['en']}</option>
@@ -68,7 +68,7 @@
 		</td>
 		<td class="mt_tbl_cel">
 		% if tbl['id_en'] == "" or tbl['id_es'] == "" or tbl['id_ca'] == "":
-			<select class="mt_tbl_sel" name="create_trans" onchange="select_option(this)">
+			<select class="mt_tbl_sel" name="trans_create" onchange="select_option(this)">
 				<option value="" disabled="disabled" selected="selected">Create</option>
 			% if tbl['id_en'] == "":
 				<option value="en/${tbl['idsec']}">${langs['en']}</option>
@@ -86,7 +86,7 @@
 		</td>
 		<td class="mt_tbl_cel">
 		% if tbl['id_en'] != "" or tbl['id_es'] != "" or tbl['id_ca'] != "":
-			<select class="mt_tbl_sel" name="delete_trans" onchange="select_option(this)">
+			<select class="mt_tbl_sel" name="trans_delete" onchange="select_option(this)">
 				<option value="" disabled="disabled" selected="selected">Delete</option>
 			% if tbl['id_en'] != "":
 				<option value="one/${tbl['id_en']}">${langs['en']}</option>

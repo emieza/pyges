@@ -4,7 +4,7 @@
 
 <a href="${request.route_url('create_page')}">Create new page</a>
 <br />
-<a href="${request.route_url('menu_trans')}">Translates menu</a>
+<a href="${request.route_url('trans_menu')}">Translates menu</a>
 <br><br>
 
 Created pages:

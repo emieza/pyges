@@ -7,15 +7,15 @@
 	function first_sel(){
 		value = document.getElementById("sel_lang").value;
 		var ajax = new XMLHttpRequest();
-		ajax.open("GET","../../view_trans/" + value + "/${idsec}",false);
+		ajax.open("GET","../../trans_view/" + value + "/${idsec}",false);
 		ajax.send();
-		document.getElementById("view_trans").innerHTML = ajax.responseText;
+		document.getElementById("trans_view").innerHTML = ajax.responseText;
 	}
 	function select_option(sel){
 		var ajax = new XMLHttpRequest();
-		ajax.open("GET","../../view_trans/" + sel.options[sel.selectedIndex].value + "/${idsec}",false);
+		ajax.open("GET","../../trans_view/" + sel.options[sel.selectedIndex].value + "/${idsec}",false);
 		ajax.send();
-		document.getElementById("view_trans").innerHTML = ajax.responseText;
+		document.getElementById("trans_view").innerHTML = ajax.responseText;
 	}
 </script>
 <h1>Pyges: create translation</h1>
@@ -31,7 +31,7 @@
 			% endfor
 			</select>
 			<br /><br />
-			<div id="view_trans"></div>
+			<div id="trans_view"></div>
 			<br /><br />
 		</td>
 		<td class="ct_tbl_cel">
@@ -59,6 +59,6 @@
 	</tr>
 </table>
 <br />
-<a href="/menu_trans">Return menu translations</a>
+<a href="/trans_menu">Return menu translations</a>
 <br />
 <a href="/">Return home</a>

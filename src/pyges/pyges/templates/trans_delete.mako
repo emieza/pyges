@@ -25,6 +25,6 @@
 	<input type="submit" value="Send">
 </form>
 
-<a href="/menu_trans">Return menu translations</a>
+<a href="/trans_menu">Return menu translations</a>
 <br />
 <a href="/">Return home</a>

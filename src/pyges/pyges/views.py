@@ -52,7 +52,7 @@ def admin_config_view(request):
 
 # start translation functions
 
-def menu_trans_view(request):
+def trans_menu_view(request):
     pages = Page.all()
     ids = [] # list of secondary id (language group)
     tbl = [] # table id secondary, titles and id for each language
@@ -81,7 +81,7 @@ def menu_trans_view(request):
                         tbl[i]["id_ca"] = page.key().id()
     return {"table":tbl,"langs":langs()}
 
-def edit_trans_view(request):
+def trans_edit_view(request):
     if request.method=="GET":
         # first visit: show form
         id = int(request.matchdict['id'])
@@ -95,7 +95,7 @@ def edit_trans_view(request):
     p.put() #desa a la BBDD
     return HTTPFound( "/menu_trans" )#request.application_url )
 
-def create_trans_view(request):
+def trans_create_view(request):
     if request.method=="GET":
         # first visit: show form
         ln = request.matchdict['ln'] # selected language
@@ -114,7 +114,7 @@ def create_trans_view(request):
     page.put() #desa a la BBDD
     return HTTPFound( "/menu_trans" )#request.application_url )
 
-def view_trans_view(request):
+def trans_view_view(request):
     if request.method=="GET":
         ln = request.matchdict['ln'] # selected language
         id = int(request.matchdict['id']) # id secondary
@@ -125,7 +125,7 @@ def view_trans_view(request):
                 p = page
                 return {"page":p,"langs":langs()}
 
-def delete_trans_view(request):
+def trans_delete_view(request):
     if request.method=="GET":
         # first visit: show form
         fn = request.matchdict['fn'] # function one (delete language page), all (delete all pages)

@@ -29,16 +29,16 @@ def make_app():
     config.add_view( views.admin_config_view, route_name="admin_config", renderer="admin_config.mako" )
 
     # TRANSLATE
-    config.add_route( "menu_trans", "/menu_trans" )
-    config.add_view( views.menu_trans_view, route_name="menu_trans", renderer="menu_trans.mako" )
-    config.add_route( "edit_trans", "/edit_trans/{id}" )
-    config.add_view( views.edit_trans_view, route_name="edit_trans", renderer="edit_trans.mako" )
-    config.add_route( "create_trans", "/create_trans/{ln}/{id}" )
-    config.add_view( views.create_trans_view, route_name="create_trans", renderer="create_trans.mako" )
-    config.add_route( "view_trans", "/view_trans/{ln}/{id}" )
-    config.add_view( views.view_trans_view, route_name="view_trans", renderer="view_trans.mako" )
-    config.add_route( "delete_trans", "/delete_trans/{fn}/{id}" )
-    config.add_view( views.delete_trans_view, route_name="delete_trans", renderer="delete_trans.mako" )
+    config.add_route( "trans_menu", "/trans_menu" )
+    config.add_view( views.trans_menu_view, route_name="trans_menu", renderer="trans_menu.mako" )
+    config.add_route( "trans_edit", "/trans_edit/{id}" )
+    config.add_view( views.trans_edit_view, route_name="trans_edit", renderer="trans_edit.mako" )
+    config.add_route( "trans_create", "/trans_create/{ln}/{id}" )
+    config.add_view( views.trans_create_view, route_name="trans_create", renderer="trans_create.mako" )
+    config.add_route( "trans_view", "/trans_view/{ln}/{id}" )
+    config.add_view( views.trans_view_view, route_name="trans_view", renderer="trans_view.mako" )
+    config.add_route( "trans_delete", "/trans_delete/{fn}/{id}" )
+    config.add_view( views.trans_delete_view, route_name="trans_delete", renderer="trans_delete.mako" )
 
     config.add_static_view(name='static',
                            path=os.path.join(__here__, 'static'))
