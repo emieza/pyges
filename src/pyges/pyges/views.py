@@ -2,7 +2,7 @@
 
 from models import *
 from pyramid.httpexceptions import HTTPFound
-#firstp=False
+firstp=False
 
 def root_view(request):
 	# show all pages
@@ -50,7 +50,7 @@ def admin_config_view(request):
         config.put()
     return {"config":config}
 
-# translation functions
+# start translation functions
 
 def menu_trans_view(request):
     pages = Page.all()
@@ -100,11 +100,10 @@ def create_trans_view(request):
         # first visit: show form
         ln = request.matchdict['ln'] # selected language
         id = int(request.matchdict['id']) # id secondary
-        pages = Page.all()
+        pages = Page.gql("WHERE idsec = :id2", id2 = id)
         exl = {} # existing languages
         for page in pages:
-            if page.idsec == id:
-                exl[page.lang] = langs()[page.lang]
+            exl[page.lang] = langs()[page.lang]
         return {"langs":langs(),"exl":exl,"ln":ln,"idsec":id}
     # POST form: save translation page
     idsec = int(request.POST.get("idsec"))
@@ -119,16 +118,12 @@ def view_trans_view(request):
     if request.method=="GET":
         ln = request.matchdict['ln'] # selected language
         id = int(request.matchdict['id']) # id secondary
-        pages = Page.all()
+        pages = Page.gql("WHERE idsec = :id2", id2 = id)
         p = ""
         for page in pages:
-            if page.idsec == id and page.lang == ln:
+            if page.lang == ln:
                 p = page
-        if p == "":
-            for page in pages:
-                if page.idsec == id:
-                    p = page
-        return {"page":p,"langs":langs()}
+                return {"page":p,"langs":langs()}
 
 def delete_trans_view(request):
     if request.method=="GET":
@@ -140,10 +135,9 @@ def delete_trans_view(request):
             page = Page.get_by_id(id)
             p.append(page)
         if fn == "all":
-            pages = Page.all()
+            pages = Page.gql("WHERE idsec = :id2", id2 = id)
             for page in pages:
-                if page.idsec == id:
-                    p.append(page)
+                p.append(page)
         return {"pages":p,"langs":langs(),"fn":fn,"id":id}
     # POST form: delete translation page or page
     fn = request.POST.get("fn")
@@ -154,13 +148,26 @@ def delete_trans_view(request):
             page = Page.get_by_id(id)
             page.delete()
         if fn == "all":
-            pages = Page.all()
+            pages = Page.gql("WHERE idsec = :id2", id2 = id)
             for page in pages:
-                if page.idsec == id:
-                    page.delete()
+                page.delete()
     return HTTPFound( "/menu_trans" )#request.application_url )	
 
 def langs():
-    # ... change db to dictionary
+    #... change db to dictionary
+    #l = {}
+    #dblangs = DBlang.all()
+    #for lang in dblangs:
+    #    l[lang.lang] = dblangs[lang.lang]
     l = {"en":"English","es":"Español","ca":"Català"}
     return l
+
+def current_lang(fn="get",ln="en"):
+    if fn == "get":
+        # ... return current lenguage
+        return "en"
+    if fn == "set":
+        # ... set current lenguage
+        return True
+
+# end translation functions
