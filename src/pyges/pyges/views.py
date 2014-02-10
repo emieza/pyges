@@ -16,9 +16,17 @@ def updatecss_view(request):
 		if element.id == id:
 			contingut = element.contingut
 			
-	return{"contingut":contingut}
+	return{"id":id,"contingut":contingut}
 	
 def confirmupdate_view(request):
+	e = Estils.all()
+	contingut = request.POST['contingut']
+	id = int(request.POST['id'])
+	
+	for element in e:
+		if element.id == id:
+			element.contingut = contingut	
+	
 	return {"edit":"edit skin"}
 
 def createskin_view(request):
