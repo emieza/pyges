@@ -61,11 +61,25 @@ def create_page_view(request):
     return HTTPFound( "/" )#request.application_url )
 
 def view_page_view(request):
-	# show a particular page
-    id = int(request.matchdict['id'])
-    p = Page.get_by_id(id)
-    b = Page.all()
-    return { "page": p , "pages":b}
+	if request.method=="POST":
+		idd = int(request.POST['skinselect'])
+		e = Estils.all()
+		for element in e:
+			if element.id == idd:
+				contingut = element.contingut
+		# show a particular page
+		id = int(request.matchdict['id'])
+		p = Page.get_by_id(id)
+		b = Page.all()
+		return { "page": p , "pages":b, "contingut":contingut, "listskins":e}
+		
+	else:
+		# show a particular page
+		e = Estils.all()
+		id = int(request.matchdict['id'])
+		p = Page.get_by_id(id)
+		b = Page.all()
+		return { "page": p , "pages":b, "listskins":e, "contingut":" "}
 
 def admin_config_view(request):
     # config should be a singleton

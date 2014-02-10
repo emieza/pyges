@@ -1,10 +1,22 @@
 <html>
 	<head>
-		<link rel="stylesheet" href="/static/main.css" type="text/css">
+		<!--<link rel="stylesheet" href="/static/main.css" type="text/css">-->
+		<style>
+			${contingut}
+		</style>
 	</head>
 	<body>
 		<div class="header">
 			<%block name="header">
+				<form action="" method="post">
+					<select name="skinselect">
+						% for skin in listskins:
+							<option value="${skin.id}">${skin.nom}</option>
+						% endfor
+					</select>
+					<input type="submit" value="Canvia skin"/>
+				</form>
+			
 				<div id="centeredmenu">
 				<ul>
 				% for pagina in pages:
