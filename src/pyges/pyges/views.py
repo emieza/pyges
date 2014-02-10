@@ -93,7 +93,7 @@ def trans_edit_view(request):
     p.title = request.POST.get("title")
     p.text = request.POST.get("text")
     p.put() #desa a la BBDD
-    return HTTPFound( "/menu_trans" )#request.application_url )
+    return HTTPFound( "/trans_menu" )#request.application_url )
 
 def trans_create_view(request):
     if request.method=="GET":
@@ -112,7 +112,7 @@ def trans_create_view(request):
     text = request.POST.get("text")
     page = Page(idsec=idsec,lang=lang,title=title,text=text)
     page.put() #desa a la BBDD
-    return HTTPFound( "/menu_trans" )#request.application_url )
+    return HTTPFound( "/trans_menu" )#request.application_url )
 
 def trans_view_view(request):
     if request.method=="GET":
@@ -151,7 +151,7 @@ def trans_delete_view(request):
             pages = Page.gql("WHERE idsec = :id2", id2 = id)
             for page in pages:
                 page.delete()
-    return HTTPFound( "/menu_trans" )#request.application_url )	
+    return HTTPFound( "/trans_menu" )#request.application_url )	
 
 def langs():
     #... change db to dictionary
