@@ -7,4 +7,5 @@ etc
 parts
 var
 .installed.cfg
+.directory
 src/pyges/pyges.egg-info

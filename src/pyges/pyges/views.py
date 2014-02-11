@@ -50,9 +50,10 @@ def admin_config_view(request):
         config.put()
     return {"config":config}
 
-# start translation functions
+# START TRANSLATION FUNCTIONS (lenguage codes in ISO 639-1 (two caracters))
 
 def trans_menu_view(request):
+    # menu for translation options
     pages = Page.all()
     ids = [] # list of secondary id (language group)
     tbl = [] # table id secondary, titles and id for each language
@@ -60,28 +61,31 @@ def trans_menu_view(request):
     for page in pages:
         if not page.idsec in ids:
             ids.append(page.idsec)
-            if page.lang == "en":
-                tbl.append({"idsec":page.idsec,"title_en":page.title,"title_es":"","title_ca":"","id_en":page.key().id(),"id_es":"","id_ca":"","count":count})
-            if page.lang == "es":
-                tbl.append({"idsec":page.idsec,"title_en":"","title_es":page.title,"title_ca":"","id_en":"","id_es":page.key().id(),"id_ca":"","count":count})
-            if page.lang == "ca":
-                tbl.append({"idsec":page.idsec,"title_en":"","title_es":"","title_ca":page.title,"id_en":"","id_es":"","id_ca":page.key().id(),"count":count})
+            tbl.append({"idsec":page.idsec,"count":count})
+            for lang in langs():
+                if lang == page.lang:
+                    tbl[count]["title_" + page.lang] = page.title
+                    tbl[count]["id_" + page.lang] = page.key().id()
+                else:
+                    tbl[count]["title_" + lang] = ""
+                    tbl[count]["id_" + lang] = ""
             count += 1
         else:
             for i in range(len(tbl)):
                 if page.idsec == tbl[i]["idsec"]:
-                    if page.lang == "en":
-                        tbl[i]["title_en"] = page.title
-                        tbl[i]["id_en"] = page.key().id()
-                    if page.lang == "es":
-                        tbl[i]["title_es"] = page.title
-                        tbl[i]["id_es"] = page.key().id()
-                    if page.lang == "ca":
-                        tbl[i]["title_ca"] = page.title
-                        tbl[i]["id_ca"] = page.key().id()
+                    tbl[i]["title_" + page.lang] = page.title
+                    tbl[i]["id_" + page.lang] = page.key().id()
+    for i in range(len(tbl)):
+        count = 0 # counter of languages in each page
+        for lang in langs():
+            if tbl[i]["id_" + lang] != "":
+                count += 1
+                tbl[i]['last'] = lang # last language in each page
+        tbl[i]['nlang'] = count # number of lenguages in each page
     return {"table":tbl,"langs":langs()}
 
 def trans_edit_view(request):
+    # edit existent translation
     if request.method=="GET":
         # first visit: show form
         id = int(request.matchdict['id'])
@@ -96,6 +100,7 @@ def trans_edit_view(request):
     return HTTPFound( "/trans_menu" )#request.application_url )
 
 def trans_create_view(request):
+    # create a new translation for a existent page
     if request.method=="GET":
         # first visit: show form
         ln = request.matchdict['ln'] # selected language
@@ -115,6 +120,7 @@ def trans_create_view(request):
     return HTTPFound( "/trans_menu" )#request.application_url )
 
 def trans_view_view(request):
+    # secondary view for trans_create_view for show translation base for create new translation
     if request.method=="GET":
         ln = request.matchdict['ln'] # selected language
         id = int(request.matchdict['id']) # id secondary
@@ -126,6 +132,7 @@ def trans_view_view(request):
                 return {"page":p,"langs":langs()}
 
 def trans_delete_view(request):
+    # delete a existent translation or all translations for a page
     if request.method=="GET":
         # first visit: show form
         fn = request.matchdict['fn'] # function one (delete language page), all (delete all pages)
@@ -154,15 +161,15 @@ def trans_delete_view(request):
     return HTTPFound( "/trans_menu" )#request.application_url )	
 
 def langs():
-    #... change db to dictionary
+    # change language data base to dictionary of lenguages
     #l = {}
-    #dblangs = DBlang.all()
-    #for lang in dblangs:
-    #    l[lang.lang] = dblangs[lang.lang]
-    l = {"en":"English","es":"Español","ca":"Català"}
-    return l
+    #lns = Langs.all()
+    #for ln in lns:
+    #    l[ln.code] = lns[ln.code]
+    return {"en":"English","es":"Español","ca":"Català","fr":"Française","pt":"Português"}
 
 def current_lang(fn="get",ln="en"):
+    # get or set current lenguage
     if fn == "get":
         # ... return current lenguage
         return "en"
@@ -170,4 +177,10 @@ def current_lang(fn="get",ln="en"):
         # ... set current lenguage
         return True
 
-# end translation functions
+def translate(text):
+    # translate text to a current lenguage selected from english lenguage
+    pass
+    # tt = Translate.gql("WHERE  en = :t", t = text)
+    # return tt
+
+# END TRANSLATION FUNCTIONS
