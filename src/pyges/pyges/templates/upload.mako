@@ -1,4 +1,6 @@
-<h1>Galeria: Puja una imatge</h1>
+<h1>Gallery: Upload Image</h1>
+
+<!-- Form to upload images -->
 
 <form method="post" enctype="multipart/form-data">
 	Title:<br>

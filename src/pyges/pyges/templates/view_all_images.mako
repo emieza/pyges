@@ -1,3 +1,5 @@
+<!-- Table style -->
+
 <style>
 	td {
 		width:100px;
@@ -9,6 +11,8 @@
 		height:100%;
 	}
 </style>
+
+<!-- Generate table -->
 
 <table>
 	<tr>

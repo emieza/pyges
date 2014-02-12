@@ -22,12 +22,15 @@ def make_app():
     config.add_route( "view_page", "/view_page/{id}" )
     config.add_view( views.view_page_view, route_name="view_page", renderer="view_page.mako" )
 
+    # Defined route and view for the upload template
     config.add_route( "upload", "/upload" )
     config.add_view( views.upload_view, route_name="upload", renderer="upload.mako")
 
+    # Defined routes and name for the view (without template, directly returns image)
     config.add_route( "view_picture", "/view_picture/{id}" )
     config.add_view( views.view_picture_view, route_name="view_picture")
 
+    # Defined routes and name for the gallery (request and render all uploaded images)
     config.add_route( "view_all_images", "/view_all_images" )
     config.add_view( views.view_all_images_view, route_name="view_all_images", renderer="view_all_images.mako")
 
