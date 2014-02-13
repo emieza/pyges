@@ -2,6 +2,11 @@
 
 from models import *
 from pyramid.httpexceptions import HTTPFound
+class Last():
+	def __init__(self):
+		self.lastskin = ""
+
+last = Last()
 
 def editcss_view(request):
 	e = Estils.all()
@@ -66,12 +71,13 @@ def view_page_view(request):
 		e = Estils.all()
 		for element in e:
 			if element.id == idd:
-				contingut = element.contingut
+				last.lastskin = element.contingut
+				
 		# show a particular page
 		id = int(request.matchdict['id'])
 		p = Page.get_by_id(id)
 		b = Page.all()
-		return { "page": p , "pages":b, "contingut":contingut, "listskins":e}
+		return { "page": p , "pages":b, "contingut":last.lastskin, "listskins":e}
 		
 	else:
 		# show a particular page
@@ -79,7 +85,7 @@ def view_page_view(request):
 		id = int(request.matchdict['id'])
 		p = Page.get_by_id(id)
 		b = Page.all()
-		return { "page": p , "pages":b, "listskins":e, "contingut":" "}
+		return { "page": p , "pages":b, "listskins":e, "contingut":last.lastskin}
 
 def admin_config_view(request):
     # config should be a singleton

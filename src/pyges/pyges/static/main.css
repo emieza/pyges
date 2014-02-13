@@ -4,14 +4,6 @@ body{
 	color:white;
 }
 
-div.header {
-	
-}
-
-div.footer {
-	
-}
-
 div.content{
 	color: white;
 	background:#000;
@@ -37,11 +29,6 @@ div.botog{
 div.boto2{
 	margin-left: 25px;
 }
-
-
-
-
-
 
 #centeredmenu {
    width: 1100;
