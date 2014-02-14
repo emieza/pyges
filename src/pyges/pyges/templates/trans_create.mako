@@ -1,4 +1,4 @@
-<!-- WYYSIWYYG -->
+<!-- WYSIWYG -->
 <script type="text/javascript" src="static/wysiwyg/tinymce/tinymce.min.js" ></script>
 <script type="text/javascript">
 	tinymce.init({
