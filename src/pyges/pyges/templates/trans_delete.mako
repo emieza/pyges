@@ -1,3 +1,5 @@
+<!-- TRANSLATE -->
+
 <style type="text/css">
 	.dt_tbl_cel { border: 1px solid black; padding: 5px; } /* each cell */
 </style>
@@ -28,3 +30,5 @@
 <a href="/trans_menu">Return menu translations</a>
 <br />
 <a href="/">Return home</a>
+
+<!--  -->
