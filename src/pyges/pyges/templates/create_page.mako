@@ -28,5 +28,7 @@
 		<textarea name="text" rows="8" cols="80"></textarea><br>
 		<input type="submit" value="Send">
 	</form>
+    <br>
+    <a href="/">Return home</a>
 </body>
 </html>

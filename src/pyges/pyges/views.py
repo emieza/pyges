@@ -7,6 +7,54 @@ from google.appengine.api import mail
 from google.appengine.api import users
 from pyramid.response import Response
 
+class Last():
+	def __init__(self):
+		self.lastskin = ""
+
+last = Last()
+
+def editcss_view(request):
+	e = Estils.all()
+	return { "listskins":e }
+	
+def updatecss_view(request):
+	e = Estils.all()
+	
+	id = int(request.POST['skinselect'])
+	
+	for element in e:
+		if element.id == id:
+			contingut = element.contingut
+			
+	return{"id":id,"contingut":contingut}
+	
+def confirmupdate_view(request):
+	e = Estils.all()
+	contingut = request.POST['contingut']
+	id = int(request.POST['id'])
+	
+	for element in e:
+		if element.id == id:
+			element.contingut = contingut
+			element.put()
+	
+	
+	return {"edit":"edit skin"}
+
+def createskin_view(request):
+	return {"create":"create skin"}
+	
+def confirmcreate_view(request):
+	id = int(request.POST['id'])
+	nom = request.POST['nom']
+	contingut = request.POST['contingut']
+	
+	estil = Estils(id=id,nom=nom,contingut=contingut)
+	estil.put()
+	
+	return {"create":"create skin"}
+
+
 def root_view(request):
 	# show all pages
     p = Page.all()
@@ -50,10 +98,26 @@ def send_mail(request):
 
 
 def view_page_view(request):
-	# show a particular page
-    id = int(request.matchdict['id'])
-    p = Page.get_by_id(id)	
-    return { "page": p }
+	if request.method=="POST":
+		idd = int(request.POST['skinselect'])
+		e = Estils.all()
+		for element in e:
+			if element.id == idd:
+				last.lastskin = element.contingut
+				
+		# show a particular page
+		id = int(request.matchdict['id'])
+		p = Page.get_by_id(id)
+		b = Page.all()
+		return { "page": p , "pages":b, "contingut":last.lastskin, "listskins":e}
+	else:
+		# show a particular page
+		e = Estils.all()
+		id = int(request.matchdict['id'])
+		p = Page.get_by_id(id)
+		b = Page.all()
+		return { "page": p , "pages":b, "listskins":e, "contingut":last.lastskin}
+
 
 def admin_config_view(request):
     # config should be a singleton

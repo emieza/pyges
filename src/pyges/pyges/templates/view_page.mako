@@ -1,9 +1,7 @@
+##base.mako
+<%inherit file="base.mako"/>
+	<h1>${page.title}</h1>
+	<p>${page.text}</p>
+	<br>
+	<a href="/">Return home</a>
 
-<h1>Pyges: view page</h1>
-
-<h2>${page.title}</h2>
-
-<div>${page.text}</div>
-
-<br>
-<a href="/">Return home</a>.
