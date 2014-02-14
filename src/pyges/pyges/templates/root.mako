@@ -4,17 +4,23 @@
 
 <a href="${request.route_url('create_page')}">Create new page</a><br/>
 <a href="${request.route_url('createskin')}">Create new skin</a><br />
-<a href="${request.route_url('editcss')}">Edit skin</a>
+<a href="${request.route_url('editcss')}">Edit skin</a><br />
+<a href="${request.route_url('trans_menu')}">Translates menu</a><br />
+<a href="${request.route_url('upload')}">Upload new photo</a><br />
+<br>
+
+Choose the language:
+<select name="main_lang">
+% for l in langs:
+	<option value="${l}">${langs[l]}</option>
+% endfor
+</select>
 <br><br>
 
-<!-- Link to upload new image -->
-
-<a href="${request.route_url('upload')}">Upload new photo</a>
-<br><br>
 Created pages:
 <ul>
 	% for page in pages:
-		<li><a href="/view_page/${page.key().id()}">${page.title}</a></li>
+		<li><a href="/view_page/${page.key().id()}">${page.title}</a> - ${langs[page.lang]}</li>
 	% endfor
 </ul>
 <a href="send_mail">Contact</a>

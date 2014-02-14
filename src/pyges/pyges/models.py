@@ -18,6 +18,8 @@ class Picture(db.Model):
     image = db.BlobProperty()
 
 class Page(db.Model):
+    idsec = db.IntegerProperty()
+    lang = db.StringProperty(required=True)
     title = db.StringProperty(required=True)
     text = db.TextProperty(required=True)
 

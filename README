@@ -1,5 +1,3 @@
-AllahuAkbar
-DESIGN BRANCH
 Pyges: a CMS in Python/Pyramid for Google App Engine
 
 To build the project:
@@ -18,4 +16,10 @@ To upload your project into your Google App Engine account:
  
 Note that you have to configure previously a GAE app that will determine
 your <app_id>.
+
+Comments:
+- Problems with charset UTF-8
+- Production with Apache and WSGI: edit /usr/lib/pythonX.Y/sitecustomize.py and add:
+import sys
+sys.setdefaultencoding('utf-8')
 

@@ -14,9 +14,7 @@ def make_app():
     config = Configurator( root_factory=Root, settings=settings )
     config.add_renderer('.jinja2', pyramid_jinja2.Jinja2Renderer)
     
-    config.add_view(views.root_view,
-                    context=Root,
-                    renderer='root.mako')
+    config.add_view(views.root_view, context=Root, renderer='root.mako')
 
     config.add_route( "view_page", "/view_page/{id}" )
     config.add_view( views.view_page_view, route_name="view_page", renderer="view_page.mako" )
@@ -37,25 +35,36 @@ def make_app():
     config.add_view( views.create_page_view, route_name="create_page", renderer="create_page.mako" )
     config.add_route( "admin_config", "/admin/config" )
     config.add_view( views.admin_config_view, route_name="admin_config", renderer="admin_config.mako" )
+    
+    # MAIL
     config.add_route("send_mail","/send_mail")
     config.add_view(views.send_mail,route_name="send_mail", renderer="send_mail.mako")
-    config.add_static_view(name='static',
-                           path=os.path.join(__here__, 'static'))
-    #CREATE CSS
+
+    # TRANSLATE
+    config.add_route( "trans_menu", "/trans_menu" )
+    config.add_view( views.trans_menu_view, route_name="trans_menu", renderer="trans_menu.mako" )
+    config.add_route( "trans_edit", "/trans_edit/{id}" )
+    config.add_view( views.trans_edit_view, route_name="trans_edit", renderer="trans_edit.mako" )
+    config.add_route( "trans_create", "/trans_create/{ln}/{id}" )
+    config.add_view( views.trans_create_view, route_name="trans_create", renderer="trans_create.mako" )
+    config.add_route( "trans_view", "/trans_view/{ln}/{id}" )
+    config.add_view( views.trans_view_view, route_name="trans_view", renderer="trans_view.mako" )
+    config.add_route( "trans_delete", "/trans_delete/{fn}/{id}" )
+    config.add_view( views.trans_delete_view, route_name="trans_delete", renderer="trans_delete.mako" )
+    
+    # SKIN & CSS
     config.add_route( "createskin", "/createskin" )
     config.add_view( views.createskin_view, route_name="createskin", renderer="createskin.mako" )
-    #CONFIRM CREATE CSS
     config.add_route( "confirmcreate", "/confirmcreate" )
     config.add_view( views.confirmcreate_view, route_name="confirmcreate", renderer="confirmcreate.mako" )
-    #EDIT CSS
     config.add_route( "editcss", "/editcss" )
     config.add_view( views.editcss_view, route_name="editcss", renderer="editcss.mako" )
-    #UPDATE CSS
     config.add_route( "updatecss", "/updatecss" )
     config.add_view( views.updatecss_view, route_name="updatecss", renderer="updatecss.mako" )  
-    #CONFIRM UPDATE CSS
     config.add_route( "confirmupdate", "/confirmupdate" )
     config.add_view( views.confirmupdate_view, route_name="confirmupdate", renderer="confirmupdate.mako" )
+
+    config.add_static_view(name='static', path=os.path.join(__here__, 'static'))
     
     return config.make_wsgi_app()
 
