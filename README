@@ -1,6 +1,4 @@
 Pyges: a CMS in Python/Pyramid for Google App Engine
-ALGO DE CONTACTO
-You'll be able to 
 
 To build the project:
  $ python bootstrap.py
@@ -19,4 +17,3 @@ To upload your project into your Google App Engine account:
 Note that you have to configure previously a GAE app that will determine
 your <app_id>.
 
-WYSIWYG test 1 blablabla
