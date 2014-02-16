@@ -19,6 +19,8 @@ def create_page_view(request):
     page.put()
     return HTTPFound( "/" )#request.application_url )
 
+def gallery_view(request):
+    return "asd"
 def view_page_view(request):
 	# show a particular page
     id = int(request.matchdict['id'])
