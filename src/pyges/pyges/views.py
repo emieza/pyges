@@ -88,16 +88,18 @@ def send_mail(request):
  	sname=request.POST["surname"]
 	email=request.POST["mail"]
 	msg=request.POST["text"]
+	if fname=="" or sname=="" or email=="" or msg=="":
+		return {'missatge':'Fill all the fields'}
      except:
-	return {'missatge':'Omple tots els camps'}
+	return {'missatge':'Fill all the fields'}
      message_body = "<h3>"+ fname + " " + sname + "</h3><h5>" + email + "</h5>" + msg
      mail.send_mail(
      sender='sundavar.l2@gmail.com',
      to='sundavar.l2@gmail.com',
-     subject='Prueba enviar mail',
+     subject='Contact page '+fname+' '+sname,
      body=fname+" "+sname+" "+email+" "+msg,     
      html=message_body)
-     return{'missatge':'Misatge enviat'}
+     return{'missatge':'Message sent'}
 
 
 def view_page_view(request):
@@ -298,7 +300,7 @@ def langs():
     #lns = Langs.all()
     #for ln in lns:
     #    l[ln.code] = lns[ln.code]
-    return {"en":"English","es":"Español","ca":"Català","fr":"Française","pt":"Português"}
+    return {u"en":u"English",u"es":u"Español",u"ca":u"Català",u"fr":u"Française",u"pt":u"Português"}
 
 def current_lang(fn="get",ln="en"):
     # get or set current lenguage

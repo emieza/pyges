@@ -7,6 +7,7 @@
 <a href="${request.route_url('editcss')}">Edit skin</a><br />
 <a href="${request.route_url('trans_menu')}">Translates menu</a><br />
 <a href="${request.route_url('upload')}">Upload new photo</a><br />
+<a href="${request.route_url('send_mail')}">Contact</a><br />
 <br>
 
 Choose the language:
@@ -23,7 +24,7 @@ Created pages:
 		<li><a href="/view_page/${page.key().id()}">${page.title}</a> - ${langs[page.lang]}</li>
 	% endfor
 </ul>
-<a href="send_mail">Contact</a>
+
 
 <!-- List uploaded images -->
 
