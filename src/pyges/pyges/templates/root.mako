@@ -1,4 +1,6 @@
-
+% if logged_in:
+    <p id="usuari-box">Bon dia, ${logged_in}(<a href="${request.route_url('logout')}">Log out</a>)</p>
+% endif
 <h1>Pyges project</h1>
 <p>A CMS for Pyramid and Google App Engine</p>
 
@@ -8,6 +10,13 @@
 <a href="${request.route_url('trans_menu')}">Translates menu</a><br />
 <a href="${request.route_url('upload')}">Upload new photo</a><br />
 <a href="${request.route_url('send_mail')}">Contact</a><br />
+% if logged_in:
+    <p>Estàs loguejat</p>
+    %else:
+    <a href="${request.route_url('login')}">Login</a><br />
+% endif
+
+
 <br>
 
 Choose the language:

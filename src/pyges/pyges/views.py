@@ -1,11 +1,60 @@
 # -*- coding: utf-8 -*-
+from pyramid.view import (
+    view_config,
+    forbidden_view_config,
+    )
 
+from pyramid.security import (
+    remember,
+    forget,
+    authenticated_userid,
+    )
 
+from .security import USERS
 from models import *
 from pyramid.httpexceptions import HTTPFound
 from google.appengine.api import mail
 from google.appengine.api import users
 from pyramid.response import Response
+
+
+#@view_config(route_name='login', renderer='templates/login.pt')
+#@forbidden_view_config(renderer='templates/login.pt')
+
+def login(request):
+    login_url = request.route_url('login')
+    referrer = request.url
+    if referrer == login_url:
+        referrer = '/' # never use the login form itself as came_from
+    came_from = request.params.get('came_from', referrer)
+    message = ''
+    user = authenticated_userid(request)
+    login = ''
+    password = ''
+    if 'form.submitted' in request.params:
+        login = request.params['login']
+        password = request.params['password']
+        if USERS.get(login) == password:
+            headers = remember(request, login)
+            return HTTPFound(location = came_from,
+                             headers = headers)
+        message = 'Failed login'
+
+    return dict(
+        message = message,
+        url = request.application_url + '/login',
+        came_from = came_from,
+        login = login,
+        password = password,
+        user = authenticated_userid(request),
+        )
+
+#@view_config(route_name='logout')
+def logout(request):
+    headers = forget(request)
+    return HTTPFound(location = "/",
+                     headers = headers)
+
 
 class Last():
 	def __init__(self):
@@ -60,7 +109,7 @@ def root_view(request):
     p = Page.all()
     # Contents all images
     pic = Picture.all()
-    return { "pages":p, "pictures": pic, "langs": langs() }
+    return { "pages":p, "pictures": pic, "langs": langs(),'logged_in':authenticated_userid(request) }
 
 
 def create_page_view(request):

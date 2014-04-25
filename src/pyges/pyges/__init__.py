@@ -3,6 +3,9 @@ from resources import Root
 import views
 import pyramid_jinja2
 import os
+from pyramid.authentication import AuthTktAuthenticationPolicy
+from pyramid.authorization import ACLAuthorizationPolicy
+from .security import groupfinder
 
 __here__ = os.path.dirname(os.path.abspath(__file__))
 
@@ -11,7 +14,14 @@ def make_app():
     """
     settings = {}
     settings['mako.directories'] = os.path.join(__here__, 'templates')  
+    authn_policy = AuthTktAuthenticationPolicy(
+        'sosecret', callback=groupfinder, hashalg='sha512')
+    authz_policy = ACLAuthorizationPolicy()
+
     config = Configurator( root_factory=Root, settings=settings )
+    config.set_authentication_policy(authn_policy)
+    config.set_authorization_policy(authz_policy)
+
     config.add_renderer('.jinja2', pyramid_jinja2.Jinja2Renderer)
     
     config.add_view(views.root_view, context=Root, renderer='root.mako')
@@ -53,6 +63,11 @@ def make_app():
     config.add_view( views.trans_delete_view, route_name="trans_delete", renderer="trans_delete.mako" )
     
     # SKIN & CSS
+    config.add_route('login', '/login')
+    config.add_view( views.login, route_name="login", renderer="templates/login.pt" )
+    config.add_route('logout', '/logout')
+    config.add_view( views.logout, route_name="logout", renderer="templates/logout.pt" )
+
     config.add_route( "createskin", "/createskin" )
     config.add_view( views.createskin_view, route_name="createskin", renderer="createskin.mako" )
     config.add_route( "confirmcreate", "/confirmcreate" )
@@ -65,7 +80,7 @@ def make_app():
     config.add_view( views.confirmupdate_view, route_name="confirmupdate", renderer="confirmupdate.mako" )
 
     config.add_static_view(name='static', path=os.path.join(__here__, 'static'))
-    
+    config.scan()    
     return config.make_wsgi_app()
 
     
